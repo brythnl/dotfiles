@@ -14,11 +14,11 @@ local packer_bootstrap = ensure_packer()
 require('packer').reset()
 require('packer').init({
   compile_path = vim.fn.stdpath('data')..'/site/plugin/packer_compiled.lua',
-  --display = {
-  --  open_fn = function()
-  --    return require('packer.util').float({ border = 'solid' })
-  --  end,
-  --},
+  display = {
+    open_fn = function()
+      return require('packer.util').float({ border = 'solid' })
+    end,
+  },
 })
 
 local use = require('packer').use
@@ -129,6 +129,20 @@ use({
   'sickill/vim-pasta',
   config = function()
     vim.g.pasta_disabled_filetypes = { 'fugitive' }
+  end,
+})
+
+-- Fuzzy finder
+use({
+  'nvim-telescope/telescope.nvim',
+  requires = {
+    'nvim-lua/plenary.nvim',
+    'kyazdani42/nvim-web-devicons',
+    'nvim-telescope/telescope-live-grep-args.nvim',
+    { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+  },
+  config = function()
+    require('bryan/plugins/telescope')
   end,
 })
 
