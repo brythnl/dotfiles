@@ -41,7 +41,7 @@ parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-PS1="\[\033[1;96m\]->  \[\033[1;97m\]\W\[\033[1;31m\]\$(parse_git_branch) \[\033[1;97m\]"
+PS1="\[\033[1;32m\]->  \[\033[1;96m\]\W\[\033[1;31m\]\$(parse_git_branch) \[\033[1;97m\]"
 
 # aliases
 alias config='/usr/bin/git --git-dir=/home/bryan/.dotfiles/ --work-tree=/home/bryan'
