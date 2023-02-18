@@ -24,19 +24,32 @@ require('packer').init({
 local use = require('packer').use
 
 -- Packer can manage itself.
-use 'wbthomason/packer.nvim'
+use ('wbthomason/packer.nvim')
+
+-- One Dark Theme
+-- use({
+--     'jessarcher/onedark.nvim',
+--     config = function()
+--       vim.cmd('colorscheme onedark')
+--     end,
+-- })
+
+-- Nightfox Theme
+use({
+    'EdenEast/nightfox.nvim',
+    config = function()
+      vim.cmd('colorscheme nightfox')
+    end,
+})
 
 -- Commenting Support
-use 'tpope/vim-commentary'
+use ('tpope/vim-commentary')
 
 -- Add, change, and delete surrounding text.
 use('tpope/vim-surround')
 
 -- Useful commands like :Rename and :SudoWrite.
 use('tpope/vim-eunuch')
-
--- Pairs of handy bracket mappings, like [b and ]b.
-use('tpope/vim-unimpaired')
 
 -- Indent autodetection with editorconfig support.
 use('tpope/vim-sleuth')
