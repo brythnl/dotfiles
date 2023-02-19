@@ -49,6 +49,39 @@ use({
   end,
 })
 
+-- A Status line.
+use({
+  'nvim-lualine/lualine.nvim',
+  requires = 'kyazdani42/nvim-web-devicons',
+  config = function()
+    require('bryan/plugins/lualine')
+  end,
+})
+
+-- Display buffers as tabs.
+use({
+  'akinsho/bufferline.nvim',
+  requires = 'kyazdani42/nvim-web-devicons',
+  after = 'nightfox.nvim',
+  config = function()
+    require('bryan/plugins/bufferline')
+  end,
+})
+
+use({
+  'lukas-reineke/indent-blankline.nvim',
+  config = function()
+    require('bryan/plugins/indent-blankline')
+  end,
+})
+
+-- use({
+--   'glepnir/dashboard-nvim',
+--   config = function()
+--     require('bryan/plugins/dashboard-nvim')
+--   end
+-- })
+
 -- Commenting Support
 use ('tpope/vim-commentary')
 
@@ -63,9 +96,6 @@ use('tpope/vim-sleuth')
 
 -- Allow plugins to enable repeating of commands.
 use('tpope/vim-repeat')
-
--- Add more languages.
-use('sheerun/vim-polyglot')
 
 -- Navigate seamlessly between Vim windows and Tmux panes.
 use('christoomey/vim-tmux-navigator')
@@ -86,16 +116,16 @@ use({
 })
 
 -- Automatically set the working directory to the project root.
-use({
-  'airblade/vim-rooter',
-  setup = function()
-    -- Instead of this running every time we open a file, we'll just run it once when Vim starts.
-    vim.g.rooter_manual_only = 1
-  end,
-  config = function()
-    vim.cmd('Rooter')
-  end,
-})
+-- use({
+--   'airblade/vim-rooter',
+--   setup = function()
+--     -- Instead of this running every time we open a file, we'll just run it once when Vim starts.
+--     vim.g.rooter_manual_only = 1
+--   end,
+--   config = function()
+--     vim.cmd('Rooter')
+--   end,
+-- })
 
 -- Automatically add closing brackets, quotes, etc.
 use({
@@ -160,9 +190,17 @@ use({
    --   bg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
    -- })
 
-   -- vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = '#30323E' })
+    vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = '#30323E' })
+
+    vim.api.nvim_set_hl(0, 'StatusLineNonText', {
+          fg = vim.api.nvim_get_hl_by_name('NonText', true).foreground,
+          bg = vim.api.nvim_get_hl_by_name('StatusLine', true).background,
+        })
+
+        vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = '#2F313C' })
     end,
 })
+
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
 if packer_bootstrap then
