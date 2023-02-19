@@ -45,5 +45,6 @@ vim.wo.number = true
 
 vim.opt.confirm = true
 
+vim.opt.signcolumn = "yes:1"
 vim.opt.undofile = true -- persistent undo
 vim.opt.backupcopy = "yes"
