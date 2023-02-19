@@ -48,4 +48,5 @@ alias config='/usr/bin/git --git-dir=/home/bryan/.dotfiles/ --work-tree=/home/br
 alias godot='/usr/bin/godot'
 alias brave='brave-browser'
 alias vim='nvim'
+alias g='git'
 
