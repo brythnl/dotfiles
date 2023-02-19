@@ -26,20 +26,27 @@ local use = require('packer').use
 -- Packer can manage itself.
 use ('wbthomason/packer.nvim')
 
--- One Dark Theme
--- use({
---     'jessarcher/onedark.nvim',
---     config = function()
---       vim.cmd('colorscheme onedark')
---     end,
--- })
-
--- Nightfox Theme
+-- Fuzzy finder
 use({
-    'EdenEast/nightfox.nvim',
-    config = function()
-      vim.cmd('colorscheme nightfox')
-    end,
+  'nvim-telescope/telescope.nvim',
+  requires = {
+    'nvim-lua/plenary.nvim',
+    'kyazdani42/nvim-web-devicons',
+    'nvim-telescope/telescope-live-grep-args.nvim',
+    { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+  },
+  config = function()
+    require('bryan/plugins/telescope')
+  end,
+})
+
+-- File tree sidebar
+use({
+  'kyazdani42/nvim-tree.lua',
+  requires = 'kyazdani42/nvim-web-devicons',
+  config = function()
+    require('bryan/plugins/nvim-tree')
+  end,
 })
 
 -- Commenting Support
@@ -132,20 +139,30 @@ use({
   end,
 })
 
--- Fuzzy finder
+-- Theme
 use({
-  'nvim-telescope/telescope.nvim',
-  requires = {
-    'nvim-lua/plenary.nvim',
-    'kyazdani42/nvim-web-devicons',
-    'nvim-telescope/telescope-live-grep-args.nvim',
-    { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-  },
-  config = function()
-    require('bryan/plugins/telescope')
-  end,
-})
+--  'jessarcher/onedark.nvim',
+--     config = function()
+--       vim.cmd('colorscheme onedark')
 
+    'EdenEast/nightfox.nvim',
+    config = function()
+      vim.cmd('colorscheme nightfox')
+
+   -- vim.api.nvim_set_hl(0, 'FloatBorder', {
+   --   fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
+   --   bg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
+   -- })
+
+   -- -- Make the cursor line background invisible
+   -- vim.api.nvim_set_hl(0, 'CursorLineBg', {
+   --   fg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
+   --   bg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
+   -- })
+
+   -- vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = '#30323E' })
+    end,
+})
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
 if packer_bootstrap then
