@@ -92,16 +92,16 @@ use({
 })
 
 -- Automatically set the working directory to the project root.
--- use({
---   'airblade/vim-rooter',
---   setup = function()
---     -- Instead of this running every time we open a file, we'll just run it once when Vim starts.
---     vim.g.rooter_manual_only = 1
---   end,
---   config = function()
---     vim.cmd('Rooter')
---   end,
--- })
+use({
+  'airblade/vim-rooter',
+  setup = function()
+    -- Instead of this running every time we open a file, we'll just run it once when Vim starts.
+    vim.g.rooter_manual_only = 1
+  end,
+  config = function()
+    vim.cmd('Rooter')
+  end,
+})
 
 -- Automatically add closing brackets, quotes, etc.
 use({
