@@ -194,14 +194,16 @@ use({
   end,
 })
 
---use({
- -- 'glepnir/dashboard-nvim',
-  -- event = 'VimEnter',
-  -- config = function()
-  --   require('bryan/plugins/dashboard-nvim')
-  -- end,
-  -- requires = {'nvim-tree/nvim-web-devicons'}
---})
+use ({
+  'glepnir/dashboard-nvim',
+  event = 'VimEnter',
+  config = function()
+    require('dashboard').setup {
+      -- config
+    }
+  end,
+  requires = {'nvim-tree/nvim-web-devicons'}
+})
 
 -- Git integration.
 use({
