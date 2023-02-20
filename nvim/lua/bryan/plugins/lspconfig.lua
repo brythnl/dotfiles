@@ -62,7 +62,8 @@ vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>") -- go to 
 -- Use <C-t> to jump back
 vim.keymap.set("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>")
 vim.keymap.set("n", "gr", "<cmd>Lspsaga rename<CR>") -- Rename all occurrences of the hovered word for the entire file
-vim.keymap.set("n", "<leader>d", "<cmd>Lspsaga show_line_diagnostics<CR>") -- show  diagnostics for line
+vim.keymap.set('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>') -- show floating diagnostics
+vim.keymap.set("n", "<leader>ld", "<cmd>Lspsaga show_line_diagnostics<CR>") -- show  diagnostics for line
 vim.keymap.set("n", "<leader>cd", "<cmd>Lspsaga show_cursor_diagnostics<CR>") -- show diagnostics for cursor
 vim.keymap.set("n", "<leader>bd", "<cmd>Lspsaga show_buf_diagnostics<CR>") -- show diagnostics for buffer
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
