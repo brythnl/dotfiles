@@ -26,61 +26,37 @@ local use = require('packer').use
 -- Packer can manage itself.
 use ('wbthomason/packer.nvim')
 
--- Fuzzy finder
+--- Theme
 use({
-  'nvim-telescope/telescope.nvim',
-  requires = {
-    'nvim-lua/plenary.nvim',
-    'kyazdani42/nvim-web-devicons',
-    'nvim-telescope/telescope-live-grep-args.nvim',
-    { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-  },
-  config = function()
-    require('bryan/plugins/telescope')
-  end,
-})
+--  'jessarcher/onedark.nvim',
+--     config = function()
+--       vim.cmd('colorscheme onedark')
 
--- File tree sidebar
-use({
-  'kyazdani42/nvim-tree.lua',
-  requires = 'kyazdani42/nvim-web-devicons',
-  config = function()
-    require('bryan/plugins/nvim-tree')
-  end,
-})
+    'EdenEast/nightfox.nvim',
+    config = function()
+      vim.cmd('colorscheme nightfox')
 
--- A Status line.
-use({
-  'nvim-lualine/lualine.nvim',
-  requires = 'kyazdani42/nvim-web-devicons',
-  config = function()
-    require('bryan/plugins/lualine')
-  end,
-})
+    vim.api.nvim_set_hl(0, 'FloatBorder', {
+      fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
+      bg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
+    })
 
--- Display buffers as tabs.
-use({
-  'akinsho/bufferline.nvim',
-  requires = 'kyazdani42/nvim-web-devicons',
-  after = 'nightfox.nvim',
-  config = function()
-    require('bryan/plugins/bufferline')
-  end,
-})
+    -- Make the cursor line background invisible
+    vim.api.nvim_set_hl(0, 'CursorLineBg', {
+      fg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
+      bg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
+    })
 
-use({
-  'lukas-reineke/indent-blankline.nvim',
-  config = function()
-    require('bryan/plugins/indent-blankline')
-  end,
-})
+    vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = '#30323E' })
 
--- use({
---   'glepnir/dashboard-nvim',
---   config = function()
---     require('bryan/plugins/dashboard-nvim')
---   end
--- })
+    vim.api.nvim_set_hl(0, 'StatusLineNonText', {
+          fg = vim.api.nvim_get_hl_by_name('NonText', true).foreground,
+          bg = vim.api.nvim_get_hl_by_name('StatusLine', true).background,
+        })
+
+        vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = '#2F313C' })
+    end,
+})
 
 -- Commenting Support
 use ('tpope/vim-commentary')
@@ -169,37 +145,63 @@ use({
   end,
 })
 
--- Theme
+-- Fuzzy finder
 use({
---  'jessarcher/onedark.nvim',
---     config = function()
---       vim.cmd('colorscheme onedark')
-
-    'EdenEast/nightfox.nvim',
-    config = function()
-      vim.cmd('colorscheme nightfox')
-
-    vim.api.nvim_set_hl(0, 'FloatBorder', {
-      fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
-      bg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
-    })
-
-    -- Make the cursor line background invisible
-    vim.api.nvim_set_hl(0, 'CursorLineBg', {
-      fg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
-      bg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
-    })
-
-    vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = '#30323E' })
-
-    vim.api.nvim_set_hl(0, 'StatusLineNonText', {
-          fg = vim.api.nvim_get_hl_by_name('NonText', true).foreground,
-          bg = vim.api.nvim_get_hl_by_name('StatusLine', true).background,
-        })
-
-        vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = '#2F313C' })
-    end,
+  'nvim-telescope/telescope.nvim',
+  requires = {
+    'nvim-lua/plenary.nvim',
+    'kyazdani42/nvim-web-devicons',
+    'nvim-telescope/telescope-live-grep-args.nvim',
+    { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+  },
+  config = function()
+    require('bryan/plugins/telescope')
+  end,
 })
+
+-- File tree sidebar
+use({
+  'kyazdani42/nvim-tree.lua',
+  requires = 'kyazdani42/nvim-web-devicons',
+  config = function()
+    require('bryan/plugins/nvim-tree')
+  end,
+})
+
+-- A Status line.
+use({
+  'nvim-lualine/lualine.nvim',
+  requires = 'kyazdani42/nvim-web-devicons',
+  config = function()
+    require('bryan/plugins/lualine')
+  end,
+})
+
+-- Display buffers as tabs.
+use({
+  'akinsho/bufferline.nvim',
+  requires = 'kyazdani42/nvim-web-devicons',
+  after = 'nightfox.nvim',
+  config = function()
+    require('bryan/plugins/bufferline')
+  end,
+})
+
+use({
+  'lukas-reineke/indent-blankline.nvim',
+  config = function()
+    require('bryan/plugins/indent-blankline')
+  end,
+})
+
+--use({
+ -- 'glepnir/dashboard-nvim',
+  -- event = 'VimEnter',
+  -- config = function()
+  --   require('bryan/plugins/dashboard-nvim')
+  -- end,
+  -- requires = {'nvim-tree/nvim-web-devicons'}
+--})
 
 -- Git integration.
 use({
@@ -235,6 +237,21 @@ use({
       highlight link FloatermBorder CursorLineBg
     ]])
   end
+})
+
+-- Improved syntax highlighting
+use({
+  'nvim-treesitter/nvim-treesitter',
+  run = function()
+    require('nvim-treesitter.install').update({ with_sync = true })
+  end,
+  requires = {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    'nvim-treesitter/nvim-treesitter-textobjects',
+  },
+  config = function()
+    require('bryan/plugins/treesitter')
+  end,
 })
 
 -- Automatically set up your configuration after cloning packer.nvim
