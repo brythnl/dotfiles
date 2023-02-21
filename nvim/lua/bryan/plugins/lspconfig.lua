@@ -51,7 +51,7 @@ require('mason-null-ls').setup({ automatic_installation = true })
 
 -- Keymaps
 vim.keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>") -- show definition, references
-vim.keymap.set({"n","v"}, "<leader>ca", "<cmd>Lspsaa code_action<CR>") -- Show all code actions
+vim.keymap.set({"n","v"}, "<leader>ca", "<cmd>Lspsaga code_action<CR>") -- Show all code actions
 vim.keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>") -- got to declaration
 vim.keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>") -- see definition and make edits in window
 vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>") -- go to implementation
