@@ -253,6 +253,14 @@ use({
   end
 })
 
+-- Emmet
+use ({
+  "mattn/emmet-vim",
+  setup = function () -- load stuff before the plugin is loaded
+    require('bryan/plugins/emmet')
+  end,
+})
+
 -- Improved syntax highlighting
 use({
   'nvim-treesitter/nvim-treesitter',
