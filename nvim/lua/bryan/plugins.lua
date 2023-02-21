@@ -73,6 +73,9 @@ use('tpope/vim-sleuth')
 -- Allow plugins to enable repeating of commands.
 use('tpope/vim-repeat')
 
+-- Add more languages.
+use('sheerun/vim-polyglot')
+
 -- Navigate seamlessly between Vim windows and Tmux panes.
 use('christoomey/vim-tmux-navigator')
 
