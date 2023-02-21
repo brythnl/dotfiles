@@ -114,6 +114,14 @@ use({
   end,
 })
 
+-- Automatically close html tags
+use ({
+  'windwp/nvim-ts-autotag',
+  config = function()
+    require('nvim-ts-autotag').setup()
+  end,
+})
+
 -- Add smooth scrolling to avoid jarring jumps
 use({
   'karb94/neoscroll.nvim',
