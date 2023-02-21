@@ -210,9 +210,7 @@ use ({
   'glepnir/dashboard-nvim',
   event = 'VimEnter',
   config = function()
-    require('dashboard').setup {
-      -- config
-    }
+    require('bryan/plugins/dashboard-nvim')
   end,
   requires = {'nvim-tree/nvim-web-devicons'}
 })
