@@ -71,7 +71,7 @@ vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
 
 -- Commands
-vim.api.nvim_create_user_command('Format', vim.lsp.buf.formatting, {})
+vim.api.nvim_create_user_command('Format', function() vim.lsp.buf.format {async = true} end, {})
 
 -- Diagnostic configuration
 vim.diagnostic.config({
