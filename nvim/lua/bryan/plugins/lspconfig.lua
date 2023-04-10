@@ -28,6 +28,9 @@ require('lspconfig').jsonls.setup({
   },
 })
 
+-- Python
+require('lspconfig').pyright.setup({ capabilities = capabilities })
+
 -- null-ls
 require('null-ls').setup({
   sources = {
