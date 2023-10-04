@@ -17,7 +17,7 @@ export PATH
 
 # if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 #   exec tmux
-# fi 
+# fi
 
 # User specific aliases and functions
 
@@ -45,8 +45,14 @@ PS1="\[\033[1;32m\]->  \[\033[1;96m\]\W\[\033[1;31m\]\$(parse_git_branch) \[\033
 
 # aliases
 alias config='/usr/bin/git --git-dir=/home/bryan/.dotfiles/ --work-tree=/home/bryan'
-alias godot='/usr/bin/godot'
+alias pycharm='/usr/bin/pycharm-community'
+alias intj='/opt/idea-IU-232.9921.47/bin/idea.sh'
+alias postman='/opt/Postman/Postman'
 alias brave='brave-browser'
 alias vim='nvim'
 alias g='git'
 
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
