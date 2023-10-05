@@ -51,6 +51,7 @@ alias postman='/opt/Postman/Postman'
 alias brave='brave-browser'
 alias vim='nvim'
 alias g='git'
+alias easyroam='/usr/share/easyroam_connect_desktop/easyroam_connect_desktop'
 
 
 
