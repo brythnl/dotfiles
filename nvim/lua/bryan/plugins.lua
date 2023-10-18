@@ -327,6 +327,30 @@ use({
   end,
 })
 
+-- Debugger
+use {
+  'mfussenegger/nvim-dap',
+  config = function()
+    require('bryan/plugins/nvim-dap')
+  end,
+}
+
+use {
+  "microsoft/vscode-js-debug",
+  opt = true,
+  run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
+}
+
+use {
+  "mxsdev/nvim-dap-vscode-js",
+  requires = {"mfussenegger/nvim-dap"},
+  config = function()
+    require('bryan/plugins/nvim-dap')
+  end,
+}
+
+use "rcarriga/nvim-dap-ui"
+
 -- PHP Refactoring Tools
 use({
   'phpactor/phpactor',
