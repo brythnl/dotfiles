@@ -28,13 +28,9 @@ use ('wbthomason/packer.nvim')
 
 --- Theme
 use({
---  'jessarcher/onedark.nvim',
---     config = function()
---       vim.cmd('colorscheme onedark')
-
-    'EdenEast/nightfox.nvim',
+    'olivercederborg/poimandres.nvim',
     config = function()
-      vim.cmd('colorscheme nightfox')
+    vim.cmd('colorscheme poimandres')
 
     vim.api.nvim_set_hl(0, 'FloatBorder', {
       fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
@@ -193,7 +189,7 @@ use({
 use({
   'akinsho/bufferline.nvim',
   requires = 'kyazdani42/nvim-web-devicons',
-  after = 'nightfox.nvim',
+  after = 'poimandres.nvim',
   config = function()
     require('bryan/plugins/bufferline')
   end,
@@ -327,13 +323,9 @@ use({
   end,
 })
 
+
 -- Debugger
-use {
-  'mfussenegger/nvim-dap',
-  config = function()
-    require('bryan/plugins/nvim-dap')
-  end,
-}
+use 'mfussenegger/nvim-dap'
 
 use {
   "microsoft/vscode-js-debug",
@@ -349,18 +341,16 @@ use {
   end,
 }
 
-use "rcarriga/nvim-dap-ui"
-
--- PHP Refactoring Tools
-use({
-  'phpactor/phpactor',
-  ft = 'php',
-  run = 'composer install --no-dev --optimize-autoloader',
+use {
+  "rcarriga/nvim-dap-ui",
+  requires = {"mfussenegger/nvim-dap"},
   config = function()
-    vim.keymap.set('n', '<Leader>pm', ':PhpactorContextMenu<CR>')
-    vim.keymap.set('n', '<Leader>pn', ':PhpactorClassNew<CR>')
+    require('dapui').setup()
+    vim.keymap.set('n', '<leader>ui', require('dapui').toggle)
   end,
-})
+}
+
+use 'theHamsta/nvim-dap-virtual-text'
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
