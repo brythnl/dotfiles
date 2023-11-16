@@ -44,8 +44,6 @@ parse_git_branch() {
 PS1="\[\033[1;32m\]->  \[\033[1;96m\]\W\[\033[1;31m\]\$(parse_git_branch) \[\033[1;33m\]✗ \[\033[1;37m\]"
 
 # aliases
-alias config='/usr/bin/git --git-dir=/home/bryan/.dotfiles/ --work-tree=/home/bryan'
-alias pycharm='/usr/bin/pycharm-community'
 alias intj='/opt/idea-IU-232.9921.47/bin/idea.sh'
 alias ob="tmux new -d '/opt/obsidian/Obsidian-1.4.16.AppImage'"
 alias postman='/opt/Postman/Postman'
@@ -53,6 +51,3 @@ alias brave='brave-browser'
 alias vim='nvim'
 alias g='git'
 alias easyroam='/usr/share/easyroam_connect_desktop/easyroam_connect_desktop'
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
