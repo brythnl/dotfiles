@@ -12,8 +12,7 @@ then
 fi
 export PATH
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
+export PATH=$PATH:/usr/local/go/bin
 
 # if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 #   exec tmux
