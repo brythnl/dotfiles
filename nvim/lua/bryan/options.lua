@@ -1,3 +1,5 @@
+vim.g.skip_ts_context_commentstring_module = true
+
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
