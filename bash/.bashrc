@@ -51,4 +51,4 @@ alias vim='nvim'
 alias g='git'
 alias easyroam='/usr/share/easyroam_connect_desktop/easyroam_connect_desktop'
 
-okular() { tmux new -d 'okular $@'; }
+okular() { tmux new -d "okular '$@'"; }
