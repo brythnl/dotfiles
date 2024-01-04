@@ -12,8 +12,17 @@ require('lspconfig').volar.setup({
   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
 })
 
+-- Prisma ORM
+require('lspconfig').prismals.setup({ capabilities = capabilities })
+
 -- Tailwind CSS
 require('lspconfig').tailwindcss.setup({ capabilities = capabilities })
+
+-- GraphQL
+require('lspconfig').graphql.setup({
+  root_dir = require('lspconfig').util.root_pattern(".graphqlconfig", ".graphqlrc", "package.json"),
+  capabilities = capabilities,
+})
 
 -- JSON
 require('lspconfig').jsonls.setup({
