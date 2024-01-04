@@ -5,7 +5,7 @@ require('lualine').setup({
     section_separators = '',
     component_separators = '',
     globalstatus = true,
-    theme = 'poimandres',
+    theme = 'rose-pine',
     -- theme = {
       -- normal = {
       --   a = 'StatusLine',

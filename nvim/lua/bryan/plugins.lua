@@ -28,13 +28,31 @@ use ('wbthomason/packer.nvim')
 
 --- Theme
 use({
-    'olivercederborg/poimandres.nvim',
+    'rose-pine/neovim',
+    as = 'rose-pine',
+    -- 'olivercederborg/poimandres.nvim',
+    -- 'aktersnurra/no-clown-fiesta.nvim',
+    -- 'craftzdog/solarized-osaka.nvim',
+    -- 'rebelot/kanagawa.nvim',
     config = function()
-      require('poimandres').setup({
+      -- require('poimandres').setup({
+        -- disable_background = true,
+      -- })
+      require('rose-pine').setup({
+        variant = 'auto',
         disable_background = true,
+        disable_italics = true
       })
+      -- require('no-clown-fiesta').setup({
+      -- })
+      -- require('solarized-osaka').setup({
+      --   transparent = false
+      -- })
+      -- require('kanagawa').setup({
+      --   transparent = false
+      -- })
 
-      vim.cmd('colorscheme poimandres')
+      vim.cmd('colorscheme rose-pine')
 
       vim.api.nvim_set_hl(0, 'FloatBorder', {
         fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
@@ -193,7 +211,11 @@ use({
 use({
   'akinsho/bufferline.nvim',
   requires = 'kyazdani42/nvim-web-devicons',
-  after = 'poimandres.nvim',
+  -- after = 'poimandres.nvim',
+  after = 'rose-pine',
+  -- after = 'no-clown-fiesta.nvim',
+  -- after = 'solarized-osaka.nvim',
+  -- after = 'kanagawa.nvim',
   config = function()
     require('bryan/plugins/bufferline')
   end,
@@ -220,8 +242,8 @@ use({
   'lewis6991/gitsigns.nvim',
   config = function()
     require('gitsigns').setup()
-    vim.keymap.set('n', '[h', ':Gitsigns next_hunk<CR>')
-    vim.keymap.set('n', ']h', ':Gitsigns prev_hunk<CR>')
+    vim.keymap.set('n', ']h', ':Gitsigns next_hunk<CR>')
+    vim.keymap.set('n', '[h', ':Gitsigns prev_hunk<CR>')
     vim.keymap.set('n', 'gs', ':Gitsigns stage_hunk<CR>')
     vim.keymap.set('n', 'gS', ':Gitsigns undo_stage_hunk<CR>')
     vim.keymap.set('n', 'gp', ':Gitsigns preview_hunk<CR>')
