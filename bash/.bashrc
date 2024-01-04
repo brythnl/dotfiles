@@ -12,6 +12,8 @@ then
 fi
 export PATH
 
+export PATH=$PATH:/usr/local/go/bin
+
 # if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 #   exec tmux
 # fi
@@ -43,8 +45,10 @@ PS1="\[\033[1;32m\]->  \[\033[1;96m\]\W\[\033[1;31m\]\$(parse_git_branch) \[\033
 # aliases
 alias intj='/opt/idea-IU-232.9921.47/bin/idea.sh'
 alias ob="tmux new -d '/opt/obsidian/Obsidian-1.4.16.AppImage'"
-alias postman='/opt/Postman/Postman'
+alias postman="tmux new -d '/opt/Postman/Postman'"
 alias brave='brave-browser'
 alias vim='nvim'
 alias g='git'
 alias easyroam='/usr/share/easyroam_connect_desktop/easyroam_connect_desktop'
+
+okular() { tmux new -d 'okular $@'; }
