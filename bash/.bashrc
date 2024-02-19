@@ -49,6 +49,27 @@ alias postman="tmux new -d '/opt/Postman/Postman'"
 alias brave='brave-browser'
 alias vim='nvim'
 alias g='git'
+alias lg='lazygit'
 alias easyroam='/usr/share/easyroam_connect_desktop/easyroam_connect_desktop'
+alias secret='aws-vault exec bryan-joestin -- chamber'
 
-okular() { tmux new -d "okular '$@'"; }
+okular() {
+	if [ "$#" -eq 0 ]; then
+		tmux new -d "okular"
+	else
+		tmux new -d "okular \"$@\""
+	fi
+}
+. "$HOME/.cargo/env"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH
+
+# pnpm
+export PNPM_HOME="/home/bryan/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
