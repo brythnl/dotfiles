@@ -57,12 +57,6 @@ require('lazy').setup({
   -- Add, change, and delete surrounding text.
   'tpope/vim-surround',
 
-  -- Useful commands like :Rename and :SudoWrite.
-  'tpope/vim-eunuch',
-
-  -- Indent autodetection with editorconfig support.
-  'tpope/vim-sleuth',
-
   -- Allow plugins to enable repeating of commands.
   'tpope/vim-repeat',
 

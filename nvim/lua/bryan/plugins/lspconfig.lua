@@ -4,12 +4,33 @@ require('mason-lspconfig').setup({ automatic_installation = true })
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- Vue, JavaScript, TypeScript
+-- Vue
 require('lspconfig').volar.setup({
   capabilities = capabilities,
-  -- Enable "Take Over Mode" where volar will provide all JS/TS LSP services
-  -- This drastically improves the responsiveness of diagnostic updates on change
-  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+  filetypes = { 'vue' },
+})
+
+-- JavaScript, TypeScript
+require('lspconfig').tsserver.setup({ capabilities = capabilities })
+
+-- Python
+require('lspconfig').pyright.setup({ capabilities = capabilities })
+
+-- Go
+require('lspconfig').gopls.setup({ capabilities = capabilities })
+
+-- Rust
+require('lspconfig').rust_analyzer.setup({
+  capabilities = capabilities,
+  filetypes = { 'rust' },
+  root_dir = require('lspconfig').util.root_pattern('Cargo.toml'),
+  settings = {
+    ['rust_analyzer'] = {
+      cargo = {
+        allFeatures = true,
+      },
+    },
+  },
 })
 
 -- Prisma ORM
@@ -33,12 +54,6 @@ require('lspconfig').jsonls.setup({
     },
   },
 })
-
--- Python
-require('lspconfig').pyright.setup({ capabilities = capabilities })
-
--- Go
-require('lspconfig').gopls.setup({ capabilities = capabilities })
 
 -- null-ls
 require('null-ls').setup({
