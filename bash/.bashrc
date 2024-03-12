@@ -51,7 +51,7 @@ fi
 unset rc
 
 # aliases
-alias intj='/opt/idea-IU-232.9921.47/bin/idea.sh'
+alias intj='/opt/idea-IC-223.7571.182/bin/idea.sh'
 alias ob="tmux new -d '/opt/obsidian/Obsidian-1.4.16.AppImage'"
 alias postman="tmux new -d '/opt/Postman/Postman'"
 alias brave='brave-browser'
