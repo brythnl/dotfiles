@@ -6,16 +6,22 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 
 local util = require("lspconfig/util")
 
--- Vue
-require('lspconfig').volar.setup({
-  capabilities = capabilities,
-  -- Enable "Take Over Mode" where volar will provide all JS/TS LSP services
-  -- This drastically improves the responsiveness of diagnostic updates on change
-  -- filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+-- Volar Hybrid Mode for TS and Vue setup: https://github.com/vuejs/language-tools/pull/4134/files
+-- Using https://github.com/pmizio/typescript-tools.nvim instead of tsserver
+require('lspconfig').tsserver.setup({
+  init_options = {
+    plugins = {
+      {
+        name = '@vue/typescript-plugin',
+        location = '/home/bryan/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server',
+        languages = { 'vue' },
+      },
+    },
+  },
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
 })
 
--- JavaScript, TypeScript
-require('lspconfig').tsserver.setup({ capabilities = capabilities })
+require('lspconfig').volar.setup({})
 
 -- Python
 require('lspconfig').pyright.setup({ capabilities = capabilities })
@@ -26,6 +32,14 @@ require('lspconfig').gopls.setup({
   cmd = {"gopls"},
   filetypes = {"go", "gomod", "gowork", "gotmpl"},
   root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+  settings = {
+    gopls = {
+      completeUnimported = true,
+      analyses = {
+        unusedparams = true,
+      },
+    },
+  },
 })
 
 -- Prisma ORM
@@ -43,6 +57,8 @@ require('lspconfig').jsonls.setup({
     },
   },
 })
+
+require('lspconfig').lua_ls.setup({ capabilities = capabilities })
 
 -- null-ls
 require('null-ls').setup({
@@ -68,14 +84,12 @@ require('mason-null-ls').setup({ automatic_installation = true })
 -- Keymaps
 vim.keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>") -- show definition, references
 vim.keymap.set({"n","v"}, "<leader>ca", "<cmd>Lspsaga code_action<CR>") -- Show all code actions
-vim.keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>") -- got to declaration
+-- vim.keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.definition()<CR>") -- got to definition
+vim.keymap.set("n", "gD", "<cmd>Lspsaga goto_definition<CR>") -- go to definition
 vim.keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>") -- see definition and make edits in window
-vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>") -- go to implementation
+vim.keymap.set("n", "gi", "<cmd>Lspsaga finder imp<CR>") -- go to implementation
 -- Peek type definition
 -- You can edit the file containing the type definition in the floating window
--- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
--- It also supports tagstack
--- Use <C-t> to jump back
 vim.keymap.set("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>")
 vim.keymap.set("n", "gr", "<cmd>Lspsaga rename<CR>") -- Rename all occurrences of the hovered word for the entire file
 vim.keymap.set('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>') -- show floating diagnostics

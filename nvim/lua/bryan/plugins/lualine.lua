@@ -1,4 +1,4 @@
-local separator = { '"▏"', color = 'StatusLineNonText' }
+local separator = { '"|"', color = 'StatusLineNonText' }
 
 require('lualine').setup({
   options = {
@@ -17,7 +17,7 @@ require('lualine').setup({
   sections = {
     lualine_a = {
       'mode',
-      separator,
+      { '"►"', color = 'StatusLineNonText' },
     },
     lualine_b = {
       'branch',
@@ -25,6 +25,8 @@ require('lualine').setup({
       separator,
       '"🖧  " .. tostring(#vim.tbl_keys(vim.lsp.buf_get_clients()))',
       { 'diagnostics', sources = { 'nvim_diagnostic' } },
+      separator,
+      '"{…}" .. tostring(vim.api.nvim_call_function("codeium#GetStatusString", {}))',
       separator,
     },
     lualine_c = {

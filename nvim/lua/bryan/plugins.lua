@@ -257,6 +257,14 @@ require('lazy').setup({
   },
 
   {
+    'jose-elias-alvarez/null-ls.nvim',
+    ft = 'go',
+    opts = function()
+      return require("bryan.plugins.null-ls")
+    end,
+  },
+
+  {
       "glepnir/lspsaga.nvim",
       branch = "main",
       config = function()
@@ -294,6 +302,38 @@ require('lazy').setup({
     end,
   },
 
+  -- TypeScript, Vue
+  -- {
+  --   'pmizio/typescript-tools.nvim',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'neovim/nvim-lspconfig'
+  --   },
+  --   opts = {},
+  --   config = function()
+  --     require("typescript-tools").setup({
+  --       init_options = {
+  --         plugins = {
+  --           {
+  --             name = '@vue/typescript-plugin',
+  --             location = '/home/bryan/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server',
+  --             languages = { 'vue' },
+  --           },
+  --         },
+  --       },
+  --     })
+
+  --     require('lspconfig').volar.setup({
+  --       capabilities = capabilities,
+  --       init_options = {
+  --         vue = {
+  --           hybridMode = false,
+  --         },
+  --       }
+  --     })
+  --   end,
+  -- },
+
   -- Rust
   {
     'mrcjkb/rustaceanvim',
@@ -301,58 +341,59 @@ require('lazy').setup({
     ft = { 'rust' },
   },
 
+  -- TODO: Setup debugger
   -- Debugger
-  'mfussenegger/nvim-dap',
+  -- 'mfussenegger/nvim-dap',
+
+  -- {
+  --   "microsoft/vscode-js-debug",
+  --   lazy = true,
+  --   build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
+  -- },
+
+  -- {
+  --   "mxsdev/nvim-dap-vscode-js",
+  --   dependencies = {"mfussenegger/nvim-dap"},
+  --   config = function()
+  --     require('bryan/plugins/nvim-dap')
+  --   end,
+  -- },
+
+  -- TODO: install nvim-nio for this
+  -- {
+  --   "rcarriga/nvim-dap-ui",
+  --   dependencies = {"mfussenegger/nvim-dap"},
+  --   config = function()
+  --     require('dapui').setup()
+  --     vim.keymap.set('n', '<leader>ui', require('dapui').toggle)
+  --   end,
+  -- },
+
+  -- 'theHamsta/nvim-dap-virtual-text',
+
+  -- {
+  --   "kdheepak/lazygit.nvim",
+  --   cmd = {
+  --     "LazyGit",
+  --     "LazyGitConfig",
+  --     "LazyGitCurrentFile",
+  --     "LazyGitFilter",
+  --     "LazyGitFilterCurrentFile",
+  --   },
+  --   -- optional for floating window border decoration
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --   },
+  -- },
 
   {
-    "microsoft/vscode-js-debug",
-    lazy = true,
-    build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
-  },
-
-  {
-    "mxsdev/nvim-dap-vscode-js",
-    dependencies = {"mfussenegger/nvim-dap"},
+    'Exafunction/codeium.vim',
+    event = 'BufEnter',
     config = function()
-      require('bryan/plugins/nvim-dap')
+      vim.keymap.set('i', '<C-c>', function () return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
+      vim.keymap.set('i', '<C-n>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true, silent = true })
+      vim.keymap.set('i', '<C-p>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true, silent = true })
+      vim.keymap.set('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true, silent = true })
     end,
-  },
-
-  {
-    "rcarriga/nvim-dap-ui",
-    dependencies = {"mfussenegger/nvim-dap"},
-    config = function()
-      require('dapui').setup()
-      vim.keymap.set('n', '<leader>ui', require('dapui').toggle)
-    end,
-  },
-
-  'theHamsta/nvim-dap-virtual-text',
-
-  {
-    "epwalsh/obsidian.nvim",
-    version = "*",  -- recommended, use latest release instead of latest commit
-    lazy = true,
-    ft = "markdown",
-    -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-    -- event = {
-    --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-    --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
-    --   "BufReadPre path/to/my-vault/**.md",
-    --   "BufNewFile path/to/my-vault/**.md",
-    -- },
-    dependencies = {
-      -- Required.
-      "nvim-lua/plenary.nvim",
-
-    },
-    opts = {
-      workspaces = {
-        {
-          name = "Second Brain",
-          path = "~/dev/notes/Second Brain",
-        },
-      },
-    },
   },
 })
