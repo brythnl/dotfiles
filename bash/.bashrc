@@ -42,7 +42,7 @@ fi
 unset rc
 
 # aliases
-alias intj='/opt/idea-IC-223.7571.182/bin/idea.sh'
+## apps
 alias ob="tmux new -d '/opt/obsidian/Obsidian-1.4.16.AppImage'"
 alias postman="tmux new -d '/opt/Postman/Postman'"
 alias brave='brave-browser'
@@ -51,15 +51,22 @@ alias g='git'
 alias lg='lazygit'
 alias easyroam='/usr/share/easyroam_connect_desktop/easyroam_connect_desktop'
 ## sidestream
-alias ss='./dev/scripts/sidestream-dev.sh'
+alias ss='./home/bryan/dev/scripts/sidestream-dev.sh'
+alias hans='cd /home/bryan/dev/sidestream/hanselmann-os && vim'
 alias secret='aws-vault exec bryan-joestin -- chamber'
 alias start-mig-db='docker run -p 5432:5432 --rm -e POSTGRES_PASSWORD=postgres -e POSTGRES_USERNAME=postgres postgres'
 ## pnpm
 alias p='pnpm'
+alias typc='pnpm typecheck'
 alias stu='pnpm prisma studio'
 alias dbp='pnpm prisma db push'
 alias lfx='pnpm lint --fix'
 alias dev='pnpm dev'
+## misc
+alias cat='bat'
+alias kills='tmux kill-session'
+alias dotvim='vim /home/bryan/dev/dotfiles/nvim'
+alias dotbash='vim /home/bryan/dev/dotfiles/bash/.bashrc'
 
 # run okular in the background
 okular() {
