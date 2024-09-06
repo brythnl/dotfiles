@@ -130,6 +130,7 @@ require('lazy').setup({
       vim.g.splitjoin_trailing_comma = 1
       vim.g.splitjoin_php_method_chain_full = 1
       vim.keymap.set('n', 'gl', ':SplitjoinSplit<CR>')
+      vim.keymap.set('n', 'gL', ':SplitjoinJoin<CR>')
     end,
   },
 

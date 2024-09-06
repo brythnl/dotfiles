@@ -7,6 +7,8 @@ fi
 
 # go
 export PATH=$PATH:/usr/local/go/bin
+GOPATH="$HOME/dev/go"
+export PATH="$GOPATH/bin:$PATH"
 # rust
 . "$HOME/.cargo/env"
 # java
@@ -51,7 +53,7 @@ alias g='git'
 alias lg='lazygit'
 alias easyroam='/usr/share/easyroam_connect_desktop/easyroam_connect_desktop'
 ## sidestream
-alias ss='./home/bryan/dev/scripts/sidestream-dev.sh'
+alias ss='/home/bryan/dev/scripts/sidestream-dev.sh'
 alias hans='cd /home/bryan/dev/sidestream/hanselmann-os && vim'
 alias secret='aws-vault exec bryan-joestin -- chamber'
 alias start-mig-db='docker run -p 5432:5432 --rm -e POSTGRES_PASSWORD=postgres -e POSTGRES_USERNAME=postgres postgres'
@@ -65,6 +67,7 @@ alias dev='pnpm dev'
 ## misc
 alias cat='bat'
 alias kills='tmux kill-session'
+alias cl='clear'
 alias dotvim='vim /home/bryan/dev/dotfiles/nvim'
 alias dotbash='vim /home/bryan/dev/dotfiles/bash/.bashrc'
 
@@ -83,3 +86,11 @@ parse_git_branch() {
 
 PS1="\[\033[1;32m\]->  \[\033[1;96m\]\W\[\033[1;31m\]\$(parse_git_branch) \[\033[1;33m\]✗ \[\033[1;37m\]"
 
+
+# pnpm
+export PNPM_HOME="/home/bryan/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

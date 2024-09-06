@@ -7,8 +7,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 local util = require("lspconfig/util")
 
 -- Volar Hybrid Mode for TS and Vue setup: https://github.com/vuejs/language-tools/pull/4134/files
--- Using https://github.com/pmizio/typescript-tools.nvim instead of tsserver
-require('lspconfig').tsserver.setup({
+require('lspconfig').ts_ls.setup({
   init_options = {
     plugins = {
       {
@@ -18,10 +17,16 @@ require('lspconfig').tsserver.setup({
       },
     },
   },
-  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
 })
 
-require('lspconfig').volar.setup({})
+require('lspconfig').volar.setup({
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+  init_options = {
+    vue = {
+      hybridMode = false,
+    },
+  },
+})
 
 -- Python
 require('lspconfig').pyright.setup({ capabilities = capabilities })
@@ -98,7 +103,7 @@ vim.keymap.set("n", "<leader>cd", "<cmd>Lspsaga show_cursor_diagnostics<CR>") --
 vim.keymap.set("n", "<leader>bd", "<cmd>Lspsaga show_buf_diagnostics<CR>") -- show diagnostics for buffer
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
+vim.keymap.set('n', 'H', '<cmd>lua vim.lsp.buf.hover()<CR>')
 
 -- Commands
 vim.api.nvim_create_user_command('Format', function() vim.lsp.buf.format {async = true} end, {})
