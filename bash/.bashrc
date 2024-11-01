@@ -5,6 +5,12 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# Source bash completion
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+
 # go
 export PATH=$PATH:/usr/local/go/bin
 GOPATH="$HOME/dev/go"
@@ -44,19 +50,23 @@ fi
 unset rc
 
 # aliases
-## apps
+## apps || tools
 alias ob="tmux new -d '/opt/obsidian/Obsidian-1.4.16.AppImage'"
 alias postman="tmux new -d '/opt/Postman/Postman'"
 alias brave='brave-browser'
+alias t='tmux'
 alias vim='nvim'
 alias g='git'
 alias lg='lazygit'
 alias easyroam='/usr/share/easyroam_connect_desktop/easyroam_connect_desktop'
 ## sidestream
 alias ss='/home/bryan/dev/scripts/sidestream-dev.sh'
-alias hans='cd /home/bryan/dev/sidestream/hanselmann-os && vim'
+alias hos='cd /home/bryan/dev/sidestream/hanselmann-os && vim'
 alias secret='aws-vault exec bryan-joestin -- chamber'
-alias start-mig-db='docker run -p 5432:5432 --rm -e POSTGRES_PASSWORD=postgres -e POSTGRES_USERNAME=postgres postgres'
+alias mcp='cp prisma/schema.prisma prisma/schema_old.prisma'
+alias mdiff='pnpm prisma migrate diff --from-schema-datamodel prisma/schema_old.prisma --to-schema-datamodel prisma/schema.prisma --script'
+alias localeflat='flat locales/de.json > tmp_de.json && flat locales/en.json > tmp_en.json && mv tmp_de.json locales/de.json && mv tmp_en.json locales/en.json'
+alias db='psql -d postgres -h localhost' # Why do localhost need to be specified: https://stackoverflow.com/questions/7369164/postgresql-why-do-i-have-to-specify-h-localhost-when-running-psql
 ## pnpm
 alias p='pnpm'
 alias typc='pnpm typecheck'
@@ -70,6 +80,7 @@ alias kills='tmux kill-session'
 alias cl='clear'
 alias dotvim='vim /home/bryan/dev/dotfiles/nvim'
 alias dotbash='vim /home/bryan/dev/dotfiles/bash/.bashrc'
+alias sdnow='shutdown now'
 
 # run okular in the background
 okular() {
@@ -85,12 +96,4 @@ parse_git_branch() {
 }
 
 PS1="\[\033[1;32m\]->  \[\033[1;96m\]\W\[\033[1;31m\]\$(parse_git_branch) \[\033[1;33m\]✗ \[\033[1;37m\]"
-
-
-# pnpm
-export PNPM_HOME="/home/bryan/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
+. "/home/bryan/.deno/env"

@@ -63,7 +63,11 @@ require('lspconfig').jsonls.setup({
   },
 })
 
+-- Lua
 require('lspconfig').lua_ls.setup({ capabilities = capabilities })
+
+-- Markdown
+require('lspconfig').marksman.setup({ capabilities = capabilities })
 
 -- null-ls
 require('null-ls').setup({
@@ -74,12 +78,6 @@ require('null-ls').setup({
       end,
     }),
     require('null-ls').builtins.diagnostics.trail_space.with({ disabled_filetypes = { 'NvimTree' } }),
-    require('null-ls').builtins.formatting.eslint_d.with({
-      condition = function(utils)
-        return utils.root_has_file({ '.eslintrc.js' })
-      end,
-    }),
-    require('null-ls').builtins.formatting.prettierd,
   },
 })
 

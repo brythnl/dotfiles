@@ -397,4 +397,15 @@ require('lazy').setup({
       vim.keymap.set('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true, silent = true })
     end,
   },
+
+  {
+      "toppair/peek.nvim",
+      event = { "VeryLazy" },
+      build = "deno task --quiet build:fast",
+      config = function()
+          require("peek").setup()
+          vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+          vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+      end,
+  },
 })

@@ -1,3 +1,7 @@
+local lighter_blue = '#1f1c2f'
+local darker_blue = '#191624'
+local white = '#ffffff'
+
 require('bufferline').setup({
   options = {
     indicator = {
@@ -10,7 +14,6 @@ require('bufferline').setup({
       {
         filetype = 'NvimTree',
         text = '  Files',
-        highlight = 'StatusLine',
         text_align = 'left',
       },
     },
@@ -26,54 +29,62 @@ require('bufferline').setup({
   },
   highlights = {
     fill = {
-      bg = { attribute = 'bg', highlight = 'StatusLine' },
+      bg = darker_blue,
+      fg = lighter_blue,
     },
     background = {
-      bg = { attribute = 'bg', highlight = 'StatusLine' },
+      bg = darker_blue,
     },
     tab = {
-      bg = { attribute = 'bg', highlight = 'StatusLine' },
+      bg = lighter_blue,
     },
     tab_close = {
-      bg = { attribute = 'bg', highlight = 'StatusLine' },
+      bg = lighter_blue,
     },
     close_button = {
-      bg = { attribute = 'bg', highlight = 'StatusLine' },
-      fg = { attribute = 'fg', highlight = 'StatusLineNonText' },
+      bg = lighter_blue,
+      fg = white,
     },
     close_button_visible = {
-      bg = { attribute = 'bg', highlight = 'StatusLine' },
-      fg = { attribute = 'fg', highlight = 'StatusLineNonText' },
+      bg = lighter_blue,
+      fg = white,
     },
     close_button_selected = {
-      fg = { attribute = 'fg', highlight = 'StatusLineNonText' },
+      bg = lighter_blue,
+      fg = white,
     },
     buffer_visible = {
-      bg = { attribute = 'bg', highlight = 'StatusLine' },
+      bg = lighter_blue,
+    },
+    buffer_selected = {
+      bg = lighter_blue,
     },
     modified = {
-      bg = { attribute = 'bg', highlight = 'StatusLine' },
+      bg = lighter_blue,
     },
     modified_visible = {
-      bg = { attribute = 'bg', highlight = 'StatusLine' },
+      bg = lighter_blue,
+    },
+    modified_selected = {
+      bg = lighter_blue,
     },
     duplicate = {
-      bg = { attribute = 'bg', highlight = 'StatusLine' },
+      bg = lighter_blue,
     },
     duplicate_visible = {
-      bg = { attribute = 'bg', highlight = 'StatusLine' },
+      bg = lighter_blue,
     },
     separator = {
-      fg = { attribute = 'bg', highlight = 'StatusLine' },
-      bg = { attribute = 'bg', highlight = 'StatusLine' },
+      bg = lighter_blue,
+      fg = darker_blue,
     },
     separator_selected = {
-      fg = { attribute = 'bg', highlight = 'StatusLine' },
-      bg = { attribute = 'bg', highlight = 'Normal' }
+      bg = lighter_blue,
+      fg = darker_blue,
     },
     separator_visible = {
-      fg = { attribute = 'bg', highlight = 'StatusLine' },
-      bg = { attribute = 'bg', highlight = 'StatusLine' },
+      bg = lighter_blue,
+      fg = darker_blue,
     },
   },
 })
