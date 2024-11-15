@@ -3,36 +3,29 @@ require('mason').setup()
 require('mason-lspconfig').setup({ automatic_installation = true })
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
 local util = require("lspconfig/util")
+local lspconfig = require('lspconfig')
 
--- Volar Hybrid Mode for TS and Vue setup: https://github.com/vuejs/language-tools/pull/4134/files
-require('lspconfig').ts_ls.setup({
+-- TS, JS, Vue
+lspconfig.ts_ls.setup({
   init_options = {
     plugins = {
       {
         name = '@vue/typescript-plugin',
         location = '/home/bryan/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server',
-        languages = { 'vue' },
+        languages = {"javascript", "typescript", "vue"},
       },
     },
   },
-})
-
-require('lspconfig').volar.setup({
   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-  init_options = {
-    vue = {
-      hybridMode = false,
-    },
-  },
 })
+lspconfig.volar.setup({})
 
 -- Python
-require('lspconfig').pyright.setup({ capabilities = capabilities })
+lspconfig.pyright.setup({ capabilities = capabilities })
 
 -- Go
-require('lspconfig').gopls.setup({
+lspconfig.gopls.setup({
   capabilities = capabilities,
   cmd = {"gopls"},
   filetypes = {"go", "gomod", "gowork", "gotmpl"},
@@ -48,13 +41,13 @@ require('lspconfig').gopls.setup({
 })
 
 -- Prisma ORM
-require('lspconfig').prismals.setup({ capabilities = capabilities })
+lspconfig.prismals.setup({ capabilities = capabilities })
 
 -- Tailwind CSS
-require('lspconfig').tailwindcss.setup({ capabilities = capabilities })
+lspconfig.tailwindcss.setup({ capabilities = capabilities })
 
 -- JSON
-require('lspconfig').jsonls.setup({
+lspconfig.jsonls.setup({
   capabilities = capabilities,
   settings = {
     json = {
@@ -64,21 +57,43 @@ require('lspconfig').jsonls.setup({
 })
 
 -- Lua
-require('lspconfig').lua_ls.setup({ capabilities = capabilities })
+lspconfig.lua_ls.setup({
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      }
+    }
+  }
+})
 
 -- Markdown
-require('lspconfig').marksman.setup({ capabilities = capabilities })
+lspconfig.marksman.setup({ capabilities = capabilities })
 
 -- null-ls
-require('null-ls').setup({
+local null_ls = require("null-ls")
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+null_ls.setup({
   sources = {
-    require('null-ls').builtins.diagnostics.eslint_d.with({
-      condition = function(utils)
-        return utils.root_has_file({ '.eslintrc.js' })
-      end,
-    }),
-    require('null-ls').builtins.diagnostics.trail_space.with({ disabled_filetypes = { 'NvimTree' } }),
+    null_ls.builtins.diagnostics.trail_space.with({ disabled_filetypes = { 'NvimTree' } }),
+    null_ls.builtins.formatting.golines,
   },
+  on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+      vim.api.nvim_clear_autocmds({
+        group = augroup,
+        buffer = bufnr,
+      })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = bufnr })
+        end,
+      })
+    end
+  end,
 })
 
 -- Has to be after calling null-ls

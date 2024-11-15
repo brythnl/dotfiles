@@ -21,33 +21,7 @@ require('lazy').setup({
     name = 'rose-pine',
     dependencies = 'akinsho/bufferline.nvim',
     config = function()
-      require('rose-pine').setup({
-        variant = 'auto',
-        disable_background = true,
-        disable_italics = true
-      })
-
-      vim.cmd('colorscheme rose-pine')
-
-      vim.api.nvim_set_hl(0, 'FloatBorder', {
-        fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
-        bg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
-      })
-
-      -- Make the cursor line background invisible
-      vim.api.nvim_set_hl(0, 'CursorLineBg', {
-        fg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
-        bg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
-      })
-
-      vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = '#30323E' })
-
-      vim.api.nvim_set_hl(0, 'StatusLineNonText', {
-            fg = vim.api.nvim_get_hl_by_name('NonText', true).foreground,
-            bg = vim.api.nvim_get_hl_by_name('StatusLine', true).background,
-          })
-
-          vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = '#2F313C' })
+      require('plugins/theme')
     end,
   },
 
@@ -152,7 +126,7 @@ require('lazy').setup({
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     },
     config = function()
-      require('bryan/plugins/telescope')
+      require('plugins/telescope')
     end,
   },
 
@@ -161,7 +135,7 @@ require('lazy').setup({
     'nvim-tree/nvim-tree.lua',
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
-      require('bryan/plugins/nvim-tree')
+      require('plugins/nvim-tree')
     end,
   },
 
@@ -170,7 +144,7 @@ require('lazy').setup({
     'nvim-lualine/lualine.nvim',
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
-      require('bryan/plugins/lualine')
+      require('plugins/lualine')
     end,
   },
 
@@ -179,14 +153,14 @@ require('lazy').setup({
     'akinsho/bufferline.nvim',
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
-      require('bryan/plugins/bufferline')
+      require('plugins/bufferline')
     end,
   },
 
   {
     'lukas-reineke/indent-blankline.nvim',
     config = function()
-      require('bryan/plugins/indent-blankline')
+      require('plugins/indent-blankline')
     end,
   },
 
@@ -194,7 +168,7 @@ require('lazy').setup({
     'glepnir/dashboard-nvim',
     event = 'VimEnter',
     config = function()
-      require('bryan/plugins/dashboard-nvim')
+      require('plugins/dashboard-nvim')
     end,
     dependencies = {'nvim-tree/nvim-web-devicons'}
   },
@@ -223,7 +197,7 @@ require('lazy').setup({
   {
     "mattn/emmet-vim",
     init = function () -- load stuff before the plugin is loaded
-      require('bryan/plugins/emmet')
+      require('plugins/emmet')
     end,
   },
 
@@ -238,7 +212,7 @@ require('lazy').setup({
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     config = function()
-      require('bryan/plugins/treesitter')
+      require('plugins/treesitter')
     end,
   },
 
@@ -249,19 +223,11 @@ require('lazy').setup({
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'b0o/schemastore.nvim',
-      'jose-elias-alvarez/null-ls.nvim',
+      'nvimtools/none-ls.nvim',
       'jayp0521/mason-null-ls.nvim',
     },
     config = function()
-      require('bryan/plugins/lspconfig')
-    end,
-  },
-
-  {
-    'jose-elias-alvarez/null-ls.nvim',
-    ft = 'go',
-    opts = function()
-      return require("bryan.plugins.null-ls")
+      require('plugins/lspconfig')
     end,
   },
 
@@ -281,7 +247,6 @@ require('lazy').setup({
       end,
       dependencies = {
           {"nvim-tree/nvim-web-devicons"},
-          --Please make sure you install markdown and markdown_inline parser
           {"nvim-treesitter/nvim-treesitter"}
       },
   },
@@ -299,93 +264,9 @@ require('lazy').setup({
       'onsails/lspkind-nvim',
     },
     config = function()
-      require('bryan/plugins/cmp')
+      require('plugins/cmp')
     end,
   },
-
-  -- TypeScript, Vue
-  -- {
-  --   'pmizio/typescript-tools.nvim',
-  --   dependencies = {
-  --     'nvim-lua/plenary.nvim',
-  --     'neovim/nvim-lspconfig'
-  --   },
-  --   opts = {},
-  --   config = function()
-  --     require("typescript-tools").setup({
-  --       init_options = {
-  --         plugins = {
-  --           {
-  --             name = '@vue/typescript-plugin',
-  --             location = '/home/bryan/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server',
-  --             languages = { 'vue' },
-  --           },
-  --         },
-  --       },
-  --     })
-
-  --     require('lspconfig').volar.setup({
-  --       capabilities = capabilities,
-  --       init_options = {
-  --         vue = {
-  --           hybridMode = false,
-  --         },
-  --       }
-  --     })
-  --   end,
-  -- },
-
-  -- Rust
-  {
-    'mrcjkb/rustaceanvim',
-    version = '^4', -- Recommended
-    ft = { 'rust' },
-  },
-
-  -- TODO: Setup debugger
-  -- Debugger
-  -- 'mfussenegger/nvim-dap',
-
-  -- {
-  --   "microsoft/vscode-js-debug",
-  --   lazy = true,
-  --   build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
-  -- },
-
-  -- {
-  --   "mxsdev/nvim-dap-vscode-js",
-  --   dependencies = {"mfussenegger/nvim-dap"},
-  --   config = function()
-  --     require('bryan/plugins/nvim-dap')
-  --   end,
-  -- },
-
-  -- TODO: install nvim-nio for this
-  -- {
-  --   "rcarriga/nvim-dap-ui",
-  --   dependencies = {"mfussenegger/nvim-dap"},
-  --   config = function()
-  --     require('dapui').setup()
-  --     vim.keymap.set('n', '<leader>ui', require('dapui').toggle)
-  --   end,
-  -- },
-
-  -- 'theHamsta/nvim-dap-virtual-text',
-
-  -- {
-  --   "kdheepak/lazygit.nvim",
-  --   cmd = {
-  --     "LazyGit",
-  --     "LazyGitConfig",
-  --     "LazyGitCurrentFile",
-  --     "LazyGitFilter",
-  --     "LazyGitFilterCurrentFile",
-  --   },
-  --   -- optional for floating window border decoration
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --   },
-  -- },
 
   {
     'Exafunction/codeium.vim',

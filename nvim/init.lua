@@ -1,3 +1,3 @@
-require('bryan/plugins')
-require('bryan/options')
-require('bryan/keymaps')
+require('plugins')
+require('options')
+require('keymaps')

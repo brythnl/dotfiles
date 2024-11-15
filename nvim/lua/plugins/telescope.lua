@@ -15,15 +15,6 @@ local select_one_or_multi = function(prompt_bufnr)
   end
 end
 
--- vim.cmd([[
---  highlight link TelescopePromptTitle PMenuSel
---  highlight link TelescopePreviewTitle PMenuSel
---  highlight link TelescopePromptNormal NormalFloat
---  highlight link TelescopePromptBorder FloatBorder
---  highlight link TelescopeNormal CursorLine
---  highlight link TelescopeBorder CursorLineBg
--- ]])
-
 require('telescope').setup({
   defaults = {
     path_display = { truncate = 1 },
