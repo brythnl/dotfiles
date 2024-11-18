@@ -10,7 +10,6 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-
 # go
 export PATH=$PATH:/usr/local/go/bin
 GOPATH="$HOME/dev/go"
@@ -24,20 +23,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export NODE_OPTIONS="--max-old-space-size=8192"
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH=$BUN_INSTALL/bin:$PATH
+# deno
+. "/home/bryan/.deno/env"
 # pnpm
 export PNPM_HOME="/home/bryan/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-
-# run tmux on start
-# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-#   exec tmux
-# fi
 
 if [ -d ~/.bashrc.d ]; then
 	for rc in ~/.bashrc.d/*; do
@@ -49,7 +42,7 @@ fi
 
 unset rc
 
-# aliases
+# ALIASES
 ## apps || tools
 alias ob="tmux new -d '/opt/obsidian/Obsidian-1.4.16.AppImage'"
 alias postman="tmux new -d '/opt/Postman/Postman'"
@@ -82,7 +75,8 @@ alias dotvim='vim /home/bryan/dev/dotfiles/nvim'
 alias dotbash='vim /home/bryan/dev/dotfiles/bash/.bashrc'
 alias sdnow='shutdown now'
 
-# run okular in the background
+# CUSTOM FUNCTIONS
+## run okular in the background
 okular() {
 	if [ "$#" -eq 0 ]; then
 		tmux new -d "okular"
@@ -90,10 +84,14 @@ okular() {
 		tmux new -d "okular \"$@\""
 	fi
 }
-# show git branch
+
+## show git branch
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-
 PS1="\[\033[1;32m\]->  \[\033[1;96m\]\W\[\033[1;31m\]\$(parse_git_branch) \[\033[1;33m\]✗ \[\033[1;37m\]"
-. "/home/bryan/.deno/env"
+
+# run tmux on start
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#   exec tmux
+# fi

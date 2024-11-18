@@ -8,12 +8,15 @@ adjust_line_height 120%
 
 cursor_blink_interval 0
 enable_audio_bell 0
-window_padding_width 10
+window_padding_width 8
 
-background_opacity 0.9
+wayland_titlebar_color #23212d
+# hide_window_decorations yes
+
+background_opacity 0.96
 dynamic_background_opacity yes
 
 # BEGIN_KITTY_THEME
-# Bluloco Dark
+# Rosé Pine
 include current-theme.conf
 # END_KITTY_THEME

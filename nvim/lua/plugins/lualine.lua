@@ -1,23 +1,16 @@
-local separator = { '"|"', color = 'StatusLineNonText' }
+local separator = { '"|"' }
 
 require('lualine').setup({
   options = {
     section_separators = '',
     component_separators = '',
     globalstatus = true,
-    theme = 'rose-pine',
-    -- theme = {
-      -- normal = {
-      --   a = 'StatusLine',
-      --   b = 'StatusLine',
-      --   c = 'StatusLine',
-      -- },
-    -- },
+    theme = 'kanagawa',
   },
   sections = {
     lualine_a = {
       'mode',
-      { '"►"', color = 'StatusLineNonText' },
+      { '"►"' },
     },
     lualine_b = {
       'branch',

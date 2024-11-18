@@ -17,13 +17,21 @@ vim.g.maplocalleader = ' '
 require('lazy').setup({
   --- Theme
   {
-    'rose-pine/neovim',
-    name = 'rose-pine',
+    'rebelot/kanagawa.nvim',
+    name = 'kanagawa',
     dependencies = 'akinsho/bufferline.nvim',
     config = function()
       require('plugins/theme')
     end,
   },
+  -- {
+  --   'rose-pine/neovim',
+  --   name = 'rose-pine',
+  --   dependencies = 'akinsho/bufferline.nvim',
+  --   config = function()
+  --     require('plugins/theme')
+  --   end,
+  -- },
 
   -- Commenting Support
   'tpope/vim-commentary',
