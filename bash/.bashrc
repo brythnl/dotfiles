@@ -58,15 +58,17 @@ alias hos='cd /home/bryan/dev/sidestream/hanselmann-os && vim'
 alias secret='aws-vault exec bryan-joestin -- chamber'
 alias mcp='cp prisma/schema.prisma prisma/schema_old.prisma'
 alias mdiff='pnpm prisma migrate diff --from-schema-datamodel prisma/schema_old.prisma --to-schema-datamodel prisma/schema.prisma --script'
-alias localeflat='flat locales/de.json > tmp_de.json && flat locales/en.json > tmp_en.json && mv tmp_de.json locales/de.json && mv tmp_en.json locales/en.json'
+alias localeflat='flat i18n/locales/de.json > tmp_de.json && flat i18n/locales/en.json > tmp_en.json && mv tmp_de.json i18n/locales/de.json && mv tmp_en.json i18n/locales/en.json'
 alias db='psql -d postgres -h localhost' # Why do localhost need to be specified: https://stackoverflow.com/questions/7369164/postgresql-why-do-i-have-to-specify-h-localhost-when-running-psql
 ## pnpm
 alias p='pnpm'
 alias typc='pnpm typecheck'
 alias stu='pnpm prisma studio'
 alias dbp='pnpm prisma db push'
-alias lfx='pnpm lint --fix'
+alias lfx='pnpm lint --fix && p localesort'
 alias dev='pnpm dev'
+## go
+alias gt='go test'
 ## misc
 alias cat='bat'
 alias kills='tmux kill-session'
@@ -74,6 +76,8 @@ alias cl='clear'
 alias dotvim='vim /home/bryan/dev/dotfiles/nvim'
 alias dotbash='vim /home/bryan/dev/dotfiles/bash/.bashrc'
 alias sdnow='shutdown now'
+alias lines='git diff --numstat | awk '\''{added+=$1; deleted+=$2} END {print "Added:", added, "Deleted:", deleted}'\'''
+alias goose='./goose.sh'
 
 # CUSTOM FUNCTIONS
 ## run okular in the background

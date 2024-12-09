@@ -204,8 +204,8 @@ require('lazy').setup({
   -- Emmet
   {
     "mattn/emmet-vim",
-    init = function () -- load stuff before the plugin is loaded
-      require('plugins/emmet')
+    init = function() -- load stuff before the plugin is loaded
+      vim.g.user_emmet_leader_key = ','
     end,
   },
 
@@ -293,8 +293,8 @@ require('lazy').setup({
       build = "deno task --quiet build:fast",
       config = function()
           require("peek").setup()
-          vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-          vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+          vim.api.nvim_create_user_command("MdPrev", require("peek").open, {})
+          vim.api.nvim_create_user_command("CloseMdPrev", require("peek").close, {})
       end,
   },
 })
