@@ -116,10 +116,10 @@ require('dashboard').setup {
       -- '',
     },
     center = {
-      { icon = '  ', desc = 'New file                       ', action = 'enew' },
-      { icon = '  ', key = 'space f', desc = 'Find file                 ', action = 'Telescope find_files' },
-      { icon = '  ', key = 'space h', desc = 'Recent files              ', action = 'Telescope oldfiles' },
-      { icon = '  ', key = 'space g', desc = 'Find Word                 ', action = 'Telescope live_grep' },
+      { icon = '  ', desc = 'New file                                   ', action = 'enew' },
+      { icon = '  ', key = 'space f', desc = 'Find file                 ', action = 'FzfLua files' },
+      { icon = '  ', key = 'space h', desc = 'Recent files              ', action = 'FzfLua oldfiles' },
+      { icon = '  ', key = 'space g', desc = 'Find Word                 ', action = 'FzfLua live_grep_native' },
     },
     footer = {
       ''

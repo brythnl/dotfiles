@@ -124,19 +124,49 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'nvim-lua/plenary.nvim',
+  },
+
   -- Fuzzy finder
   {
-    'nvim-telescope/telescope.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons',
-      'nvim-telescope/telescope-live-grep-args.nvim',
-      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    'ibhagwan/fzf-lua',
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    keys = {
+      { "<leader>r", "<cmd>FzfLua resume<CR>", desc = "Resume" },
+      { "<leader>g", "<cmd>FzfLua live_grep_native<CR>", desc = "Live Grep" },
+      { "<leader>f", "<cmd>FzfLua files<CR>", desc = "Find Files" },
+      { "<leader>h", "<cmd>FzfLua oldfiles<CR>", desc = "History" },
+      { "<leader>b", "<cmd>FzfLua buffers<CR>", desc = "Buffers" },
+      { "<leader>k", "<cmd>FzfLua keymaps<CR>", desc = "Keymaps" },
     },
-    config = function()
-      require('plugins/telescope')
+    opts = function()
+      local actions = require('fzf-lua').actions
+
+      return {
+        actions = {
+          files = {
+            ["enter"] = actions.file_edit,
+          },
+          grep = {
+            ["enter"] = actions.file_edit,
+          },
+        },
+      }
     end,
   },
+  -- {
+  --   'nvim-telescope/telescope.nvim',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'nvim-tree/nvim-web-devicons',
+  --     'nvim-telescope/telescope-live-grep-args.nvim',
+  --     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+  --   },
+  --   config = function()
+  --     require('plugins/telescope')
+  --   end,
+  -- },
 
   -- File tree sidebar
   {

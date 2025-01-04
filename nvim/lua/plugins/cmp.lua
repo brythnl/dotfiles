@@ -9,6 +9,28 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+local next = function(fallback)
+  if cmp.visible() then
+    cmp.select_next_item()
+  elseif luasnip.expand_or_jumpable() then
+    luasnip.expand_or_jump()
+  elseif has_words_before() then
+    cmp.complete()
+  else
+    fallback()
+  end
+end
+
+local prev = function(fallback)
+  if cmp.visible() then
+    cmp.select_prev_item()
+  elseif luasnip.jumpable(-1) then
+    luasnip.jump(-1)
+  else
+    fallback()
+  end
+end
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -19,27 +41,11 @@ cmp.setup({
     format = lspkind.cmp_format(),
   },
   mapping = {
-    ["<C-j>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-    ["<C-k>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+    ["<C-n>"] = cmp.mapping(next, { "i", "s" }),
+    ["<C-j>"] = cmp.mapping(next, { "i", "s" }),
+    ["<C-p>"] = cmp.mapping(prev, { "i", "s" }),
+    ["<C-k>"] = cmp.mapping(prev, { "i", "s" }),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
   sources = {
     { name = 'nvim_lsp' },
