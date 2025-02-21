@@ -53,7 +53,7 @@ alias g='git'
 alias lg='lazygit'
 alias easyroam='/usr/share/easyroam_connect_desktop/easyroam_connect_desktop'
 ## sidestream
-alias ss='/home/bryan/dev/scripts/sidestream-dev.sh'
+alias ss='/home/bryan/dev/sidestream/setup-dev.sh'
 alias hos='cd /home/bryan/dev/sidestream/hanselmann-os && vim'
 alias secret='aws-vault exec bryan-joestin -- chamber'
 alias mcp='cp prisma/schema.prisma prisma/schema_old.prisma'

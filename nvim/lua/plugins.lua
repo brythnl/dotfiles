@@ -124,49 +124,60 @@ require('lazy').setup({
     end,
   },
 
-  {
-    'nvim-lua/plenary.nvim',
-  },
-
   -- Fuzzy finder
-  {
-    'ibhagwan/fzf-lua',
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    keys = {
-      { "<leader>r", "<cmd>FzfLua resume<CR>", desc = "Resume" },
-      { "<leader>g", "<cmd>FzfLua live_grep_native<CR>", desc = "Live Grep" },
-      { "<leader>f", "<cmd>FzfLua files<CR>", desc = "Find Files" },
-      { "<leader>h", "<cmd>FzfLua oldfiles<CR>", desc = "History" },
-      { "<leader>b", "<cmd>FzfLua buffers<CR>", desc = "Buffers" },
-      { "<leader>k", "<cmd>FzfLua keymaps<CR>", desc = "Keymaps" },
-    },
-    opts = function()
-      local actions = require('fzf-lua').actions
-
-      return {
-        actions = {
-          files = {
-            ["enter"] = actions.file_edit,
-          },
-          grep = {
-            ["enter"] = actions.file_edit,
-          },
-        },
-      }
-    end,
-  },
   -- {
-  --   'nvim-telescope/telescope.nvim',
-  --   dependencies = {
-  --     'nvim-lua/plenary.nvim',
-  --     'nvim-tree/nvim-web-devicons',
-  --     'nvim-telescope/telescope-live-grep-args.nvim',
-  --     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+  --   'ibhagwan/fzf-lua',
+  --   dependencies = { "nvim-tree/nvim-web-devicons" },
+  --   keys = {
+  --     { "<leader>r", "<cmd>FzfLua resume<CR>", desc = "Resume" },
+  --     { "<leader>f", "<cmd>FzfLua files<CR>", desc = "Find Files" },
+  --     { "<leader>h", "<cmd>FzfLua oldfiles<CR>", desc = "History" },
+  --     { "<leader>g", "<cmd>FzfLua live_grep_native<CR>", desc = "Live Grep" },
+  --     { "<leader>gw", "<cmd>FzfLua grep_cword<CR>", desc = "Grep Word" },
+  --     { "<leader>b", "<cmd>FzfLua buffers<CR>", desc = "Buffers" },
+  --     { "<leader>k", "<cmd>FzfLua keymaps<CR>", desc = "Keymaps" },
   --   },
-  --   config = function()
-  --     require('plugins/telescope')
+  --   opts = function()
+  --     local actions = require('fzf-lua').actions
+
+  --     return {
+  --       actions = {
+  --         files = {
+  --           ["enter"] = actions.file_edit,
+  --         },
+  --         grep = {
+  --           ["enter"] = actions.file_edit,
+  --         },
+  --       },
+  --     }
   --   end,
   -- },
+  {
+    'nvim-telescope/telescope.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'nvim-telescope/telescope-live-grep-args.nvim',
+      'debugloop/telescope-undo.nvim',
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    },
+    config = function()
+      require('plugins/telescope')
+    end,
+  },
+
+  -- GitHub issues and PRs
+  {
+    'pwntester/octo.nvim',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require('octo').setup()
+    end,
+  },
 
   -- File tree sidebar
   {
@@ -263,6 +274,7 @@ require('lazy').setup({
       'b0o/schemastore.nvim',
       'nvimtools/none-ls.nvim',
       'jayp0521/mason-null-ls.nvim',
+      'nvim-lua/plenary.nvim',
     },
     config = function()
       require('plugins/lspconfig')
@@ -270,23 +282,23 @@ require('lazy').setup({
   },
 
   {
-      "glepnir/lspsaga.nvim",
-      branch = "main",
-      config = function()
-          require("lspsaga").setup({
-              move_in_saga = { prev = "<C-k>", next = "<C-j>" },
-              finder_action_keys = {
-                open = "<CR>",
-                },
-                definition_action_keys = {
-                    edit = "<CR>",
-                },
-          })
-      end,
-      dependencies = {
-          {"nvim-tree/nvim-web-devicons"},
-          {"nvim-treesitter/nvim-treesitter"}
-      },
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    config = function()
+      require("lspsaga").setup({
+        move_in_saga = { prev = "<C-p>", next = "<C-n>" },
+        finder_action_keys = {
+          open = "<CR>",
+          },
+          definition_action_keys = {
+            edit = "<CR>",
+          },
+      })
+    end,
+    dependencies = {
+      {"nvim-tree/nvim-web-devicons"},
+      {"nvim-treesitter/nvim-treesitter"}
+    },
   },
 
   -- Completion
@@ -318,13 +330,13 @@ require('lazy').setup({
   },
 
   {
-      "toppair/peek.nvim",
-      event = { "VeryLazy" },
-      build = "deno task --quiet build:fast",
-      config = function()
-          require("peek").setup()
-          vim.api.nvim_create_user_command("MdPrev", require("peek").open, {})
-          vim.api.nvim_create_user_command("CloseMdPrev", require("peek").close, {})
-      end,
+    "toppair/peek.nvim",
+    event = { "VeryLazy" },
+    build = "deno task --quiet build:fast",
+    config = function()
+      require("peek").setup()
+      vim.api.nvim_create_user_command("MdPrev", require("peek").open, {})
+      vim.api.nvim_create_user_command("CloseMdPrev", require("peek").close, {})
+    end,
   },
 })

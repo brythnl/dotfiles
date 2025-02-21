@@ -1,4 +1,5 @@
 vim.g.skip_ts_context_commentstring_module = true
+vim.g.markdown_recommended_style = false
 
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2

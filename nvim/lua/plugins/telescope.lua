@@ -1,4 +1,5 @@
-local actions = require('telescope.actions')
+local actions_default = require('telescope.actions')
+local actions_lga = require('telescope-live-grep-args.actions')
 
 local select_one_or_multi = function(prompt_bufnr)
   local picker = require('telescope.actions.state').get_current_picker(prompt_bufnr)
@@ -11,7 +12,7 @@ local select_one_or_multi = function(prompt_bufnr)
       end
     end
   else
-    require('telescope.actions').select_default(prompt_bufnr)
+    actions_default.select_default(prompt_bufnr)
   end
 end
 
@@ -26,12 +27,12 @@ require('telescope').setup({
     sorting_strategy = 'ascending',
     mappings = {
       i = {
-        ['<esc>'] = actions.close,
-        ['<C-Down>'] = actions.cycle_history_next,
-        ['<C-Up>'] = actions.cycle_history_prev,
-        ['<C-k>'] = actions.move_selection_previous,
-        ['<C-j>'] = actions.move_selection_next,
-        ['<C-q>'] = actions.send_selected_to_qflist + actions.open_qflist,
+        ['<esc>'] = actions_default.close,
+        ['<C-Down>'] = actions_default.cycle_history_next,
+        ['<C-Up>'] = actions_default.cycle_history_prev,
+        ['<C-p>'] = actions_default.move_selection_previous,
+        ['<C-n>'] = actions_default.move_selection_next,
+        ['<C-q>'] = actions_default.send_selected_to_qflist + actions_default.open_qflist,
         ['<CR>'] = select_one_or_multi,
       },
     },
@@ -54,14 +55,41 @@ require('telescope').setup({
       previewer = false,
     },
   },
+  extensions = {
+    live_grep_args = {
+      auto_quoting = true,
+      mappings = {
+        i = {
+          ['<C-f>'] = actions_default.to_fuzzy_refine,
+        },
+      },
+    },
+    undo = {
+      mappings = {
+        i = {
+          ['<cr>'] = require('telescope-undo.actions').restore,
+        },
+      },
+    },
+  },
 })
 
+local builtin = require('telescope.builtin')
+local lga = require('telescope').load_extension('live_grep_args')
+local undo = require('telescope').load_extension('undo')
 require('telescope').load_extension('fzf')
-require('telescope').load_extension('live_grep_args')
 
-vim.keymap.set('n', '<leader>f', [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
-vim.keymap.set('n', '<leader>F', [[<cmd>lua require('telescope.builtin').find_files({ no_ignore = true, prompt_title = 'All Files' })<CR>]])
-vim.keymap.set('n', '<leader>b', [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
-vim.keymap.set('n', '<leader>g', [[<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>]])
-vim.keymap.set('n', '<leader>h', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
-vim.keymap.set('n', '<leader>s', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]])
+vim.keymap.set('n', '<leader>f', builtin.find_files)
+vim.keymap.set('n', '<leader>F', [[<cmd>lua require('telescope.builtin').find_files({ no_ignore = true, prompt_title = 'All Files' })<cr>]])
+vim.keymap.set('n', '<leader>b', builtin.buffers)
+vim.keymap.set('n', '<leader>h', builtin.oldfiles)
+vim.keymap.set('n', '<leader>s', builtin.lsp_document_symbols)
+vim.keymap.set('n', '<leader>k', builtin.keymaps)
+vim.keymap.set('n', '<leader>r', builtin.resume)
+vim.keymap.set('n', '<leader>S', builtin.spell_suggest)
+vim.keymap.set('n', '<leader>g', lga.live_grep_args)
+vim.keymap.set('n', '<leader>u', undo.undo)
+vim.keymap.set('n', 'gD', builtin.lsp_definitions)
+vim.keymap.set('n', 'gT', builtin.lsp_type_definitions)
+vim.keymap.set('n', 'gI', builtin.lsp_implementations)
+vim.keymap.set('n', 'gR', builtin.lsp_references)
