@@ -44,7 +44,7 @@ unset rc
 
 # ALIASES
 ## apps || tools
-alias ob="tmux new -d '/opt/obsidian/Obsidian-1.4.16.AppImage'"
+alias ob="tmux new -d '/opt/obsidian/Obsidian-1.8.7.AppImage'"
 alias postman="tmux new -d '/opt/Postman/Postman'"
 alias brave='brave-browser'
 alias t='tmux'
@@ -59,7 +59,7 @@ alias secret='aws-vault exec bryan-joestin -- chamber'
 alias mcp='cp prisma/schema.prisma prisma/schema_old.prisma'
 alias mdiff='pnpm prisma migrate diff --from-schema-datamodel prisma/schema_old.prisma --to-schema-datamodel prisma/schema.prisma --script'
 alias localeflat='flat i18n/locales/de.json > tmp_de.json && flat i18n/locales/en.json > tmp_en.json && mv tmp_de.json i18n/locales/de.json && mv tmp_en.json i18n/locales/en.json'
-alias db='psql -d postgres -h localhost' # Why do localhost need to be specified: https://stackoverflow.com/questions/7369164/postgresql-why-do-i-have-to-specify-h-localhost-when-running-psql
+alias db='sudo -u postgres psql -d hos' # Why do localhost need to be specified: https://stackoverflow.com/questions/7369164/postgresql-why-do-i-have-to-specify-h-localhost-when-running-psql
 ## pnpm
 alias p='pnpm'
 alias typc='pnpm typecheck'

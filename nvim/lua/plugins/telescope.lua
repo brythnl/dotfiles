@@ -76,6 +76,7 @@ require('telescope').setup({
 
 local builtin = require('telescope.builtin')
 local lga = require('telescope').load_extension('live_grep_args')
+local lgas = require('telescope-live-grep-args.shortcuts')
 local undo = require('telescope').load_extension('undo')
 require('telescope').load_extension('fzf')
 
@@ -84,10 +85,11 @@ vim.keymap.set('n', '<leader>F', [[<cmd>lua require('telescope.builtin').find_fi
 vim.keymap.set('n', '<leader>b', builtin.buffers)
 vim.keymap.set('n', '<leader>h', builtin.oldfiles)
 vim.keymap.set('n', '<leader>s', builtin.lsp_document_symbols)
+vim.keymap.set('n', '<leader>S', builtin.lsp_workspace_symbols)
 vim.keymap.set('n', '<leader>k', builtin.keymaps)
 vim.keymap.set('n', '<leader>r', builtin.resume)
-vim.keymap.set('n', '<leader>S', builtin.spell_suggest)
 vim.keymap.set('n', '<leader>g', lga.live_grep_args)
+vim.keymap.set('n', '<leader>G', lgas.grep_word_under_cursor)
 vim.keymap.set('n', '<leader>u', undo.undo)
 vim.keymap.set('n', 'gD', builtin.lsp_definitions)
 vim.keymap.set('n', 'gT', builtin.lsp_type_definitions)

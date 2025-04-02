@@ -8,6 +8,7 @@ local lspconfig = require('lspconfig')
 
 -- TS, JS, Vue
 lspconfig.ts_ls.setup({
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
   init_options = {
     plugins = {
       {
@@ -17,9 +18,53 @@ lspconfig.ts_ls.setup({
       },
     },
   },
-  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+  settings = {
+    typescript = {
+      tsserver = {
+        useSyntaxServer = false,
+      },
+      inlayHints = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
+    },
+  },
 })
-lspconfig.volar.setup({})
+lspconfig.volar.setup({
+  init_options = {
+    vue = {
+      hybridMode = false,
+    },
+  },
+  settings = {
+    typescript = {
+      inlayHints = {
+        enumMemberValues = {
+          enabled = true,
+        },
+        functionLikeReturnTypes = {
+          enabled = true,
+        },
+        propertyDeclarationTypes = {
+          enabled = true,
+        },
+        parameterTypes = {
+          enabled = true,
+          suppressWhenArgumentMatchesName = true,
+        },
+        variableTypes = {
+          enabled = true,
+        },
+      },
+    },
+  },
+})
 
 -- Python
 lspconfig.pyright.setup({ capabilities = capabilities })
@@ -71,6 +116,9 @@ lspconfig.lua_ls.setup({
 -- Markdown
 lspconfig.marksman.setup({ capabilities = capabilities })
 
+-- YAML
+lspconfig.yamlls.setup({ capabilities = capabilities })
+
 -- null-ls
 local null_ls = require("null-ls")
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -113,7 +161,10 @@ vim.keymap.set("n", "<leader>bd", "<cmd>Lspsaga show_buf_diagnostics<CR>") -- sh
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 vim.keymap.set('n', 'H', '<cmd>lua vim.lsp.buf.hover()<CR>')
-vim.keymap.set("n", "R", "<cmd>Lspsaga rename<CR>") -- Rename all occurrences of the hovered word for the entire file
+vim.keymap.set("n", "R", "<cmd>lua vim.lsp.buf.rename()<CR>") -- Rename all occurrences of the hovered word for the entire file
+vim.keymap.set("n", "I", function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end)
 
 -- vim.keymap.set("n", "gf", "<cmd>FzfLua lsp_finder<CR>")
 -- vim.keymap.set("n", "gD", "<cmd>FzfLua lsp_definitions jump_to_single_result=true ignore_current_line=true<CR>")
