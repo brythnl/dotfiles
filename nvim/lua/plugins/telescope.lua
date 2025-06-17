@@ -1,5 +1,4 @@
 local actions_default = require('telescope.actions')
-local actions_lga = require('telescope-live-grep-args.actions')
 
 local select_one_or_multi = function(prompt_bufnr)
   local picker = require('telescope.actions.state').get_current_picker(prompt_bufnr)
@@ -18,6 +17,7 @@ end
 
 require('telescope').setup({
   defaults = {
+    cache_picker = { num_pickers = 5 },
     path_display = { truncate = 1 },
     prompt_prefix = '   ',
     selection_caret = '  ',
@@ -88,6 +88,7 @@ vim.keymap.set('n', '<leader>s', builtin.lsp_document_symbols)
 vim.keymap.set('n', '<leader>S', builtin.lsp_workspace_symbols)
 vim.keymap.set('n', '<leader>k', builtin.keymaps)
 vim.keymap.set('n', '<leader>r', builtin.resume)
+vim.keymap.set('n', '<leader>p', builtin.pickers)
 vim.keymap.set('n', '<leader>g', lga.live_grep_args)
 vim.keymap.set('n', '<leader>G', lgas.grep_word_under_cursor)
 vim.keymap.set('n', '<leader>u', undo.undo)

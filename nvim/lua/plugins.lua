@@ -1,3 +1,4 @@
+-- Bootstrap lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -11,19 +12,28 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Set leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Plugins
 require('lazy').setup({
   --- Theme
   {
-    'rebelot/kanagawa.nvim',
-    name = 'kanagawa',
+    "EdenEast/nightfox.nvim",
     dependencies = 'akinsho/bufferline.nvim',
     config = function()
       require('plugins/theme')
     end,
   },
+  -- {
+  --   'Mofiqul/adwaita.nvim',
+  --   name = 'adwaita',
+  --   dependencies = 'akinsho/bufferline.nvim',
+  --   config = function()
+  --     require('plugins/theme')
+  --   end,
+  -- },
   -- {
   --   'rose-pine/neovim',
   --   name = 'rose-pine',
@@ -269,11 +279,10 @@ require('lazy').setup({
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      'b0o/schemastore.nvim',
+      'mason-org/mason.nvim',
+      'mason-org/mason-lspconfig.nvim',
       'nvimtools/none-ls.nvim',
-      'jayp0521/mason-null-ls.nvim',
+      'jay-babu/mason-null-ls.nvim',
       'nvim-lua/plenary.nvim',
     },
     config = function()
@@ -287,12 +296,8 @@ require('lazy').setup({
     config = function()
       require("lspsaga").setup({
         move_in_saga = { prev = "<C-p>", next = "<C-n>" },
-        finder_action_keys = {
-          open = "<CR>",
-          },
-          definition_action_keys = {
-            edit = "<CR>",
-          },
+        finder_action_keys = { open = "<CR>" },
+        definition_action_keys = { edit = "<CR>" },
       })
     end,
     dependencies = {

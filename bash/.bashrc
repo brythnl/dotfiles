@@ -10,14 +10,15 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+# List tasks on startup
+# td ls
+
 # go
 export PATH=$PATH:/usr/local/go/bin
 GOPATH="$HOME/dev/go"
 export PATH="$GOPATH/bin:$PATH"
 # rust
 . "$HOME/.cargo/env"
-# java
-export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
 # node
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -44,6 +45,7 @@ unset rc
 
 # ALIASES
 ## apps || tools
+alias idea="tmux new -d '/opt/idea-IU-251.26094.121/bin/idea'"
 alias ob="tmux new -d '/opt/obsidian/Obsidian-1.8.7.AppImage'"
 alias postman="tmux new -d '/opt/Postman/Postman'"
 alias brave='brave-browser'
@@ -59,7 +61,8 @@ alias secret='aws-vault exec bryan-joestin -- chamber'
 alias mcp='cp prisma/schema.prisma prisma/schema_old.prisma'
 alias mdiff='pnpm prisma migrate diff --from-schema-datamodel prisma/schema_old.prisma --to-schema-datamodel prisma/schema.prisma --script'
 alias localeflat='flat i18n/locales/de.json > tmp_de.json && flat i18n/locales/en.json > tmp_en.json && mv tmp_de.json i18n/locales/de.json && mv tmp_en.json i18n/locales/en.json'
-alias db='sudo -u postgres psql -d hos' # Why do localhost need to be specified: https://stackoverflow.com/questions/7369164/postgresql-why-do-i-have-to-specify-h-localhost-when-running-psql
+alias db='sudo -u postgres psql' # Why do localhost need to be specified: https://stackoverflow.com/questions/7369164/postgresql-why-do-i-have-to-specify-h-localhost-when-running-psql
+alias tstart='export $(grep -v '^#' .env | xargs) && pnpm start &'
 ## pnpm
 alias p='pnpm'
 alias typc='pnpm typecheck'
@@ -91,9 +94,18 @@ okular() {
 
 ## show git branch
 parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 PS1="\[\033[1;32m\]->  \[\033[1;96m\]\W\[\033[1;31m\]\$(parse_git_branch) \[\033[1;33m\]✗ \[\033[1;37m\]"
+
+# create new note
+n() {
+  if [ "$#" -eq 0 ]; then
+    vim /home/bryan/dev/notes
+  else
+    cd /home/bryan/dev/notes/ && vim $1.md
+  fi
+}
 
 # run tmux on start
 # if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then

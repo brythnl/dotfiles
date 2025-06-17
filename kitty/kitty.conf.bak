@@ -9,14 +9,13 @@ adjust_line_height 120%
 cursor_blink_interval 0
 enable_audio_bell 0
 window_padding_width 8
-
-wayland_titlebar_color #23212d
+# wayland_titlebar_color #23212d
 # hide_window_decorations yes
 
-background_opacity 0.96
-dynamic_background_opacity yes
+# background_opacity 0.70
+# dynamic_background_opacity yes
 
 # BEGIN_KITTY_THEME
-# Rosé Pine
+# Terafox
 include current-theme.conf
 # END_KITTY_THEME
