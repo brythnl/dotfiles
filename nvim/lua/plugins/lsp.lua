@@ -3,10 +3,12 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        vtsls = { enabled = false },
+        vtsls = {
+          enabled = true,
+        },
         ts_ls = {
           enabled = true,
-          filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+          filetypes = { "typescript", "javascript", "vue" },
           init_options = {
             plugins = {
               {

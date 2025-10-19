@@ -9,4 +9,14 @@ return {
       vim.keymap.set("n", "gL", ":SplitjoinJoin<CR>")
     end,
   },
+
+  {
+    "rafamadriz/friendly-snippets",
+    config = function()
+      require("luasnip").filetype_extend("javascriptreact", { "html" })
+      require("luasnip").filetype_extend("typescriptreact", { "html" })
+      require("luasnip").filetype_extend("vue", { "html" })
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end,
+  },
 }
