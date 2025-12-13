@@ -58,4 +58,29 @@ return {
       },
     },
   },
+
+  {
+    "mason-org/mason.nvim",
+    opts = {
+      ensure_installed = {
+        'ruff',
+        'goimports',
+        'gofumpt',
+        'golangci-lint',
+        'gopls',
+        'lua-language-server',
+        'markdown-toc',
+        'markdownlint-cli2',
+        'marksman',
+        'prisma-language-server',
+        'pyright',
+        'shfmt',
+        'stylua',
+        'tailwindcss-language-server',
+        'tree-sitter-cli',
+        'vtsls',
+        'vue-language-server',
+      },
+    },
+  },
 }
