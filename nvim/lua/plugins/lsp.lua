@@ -2,10 +2,13 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      inlayHints = { enabled = false },
       servers = {
         vtsls = {
-          enabled = true,
+          -- tsgo is not compatible with vue_ls yet
+          filetypes = { "vue" },
         },
+        tsgo = {},
       -- Using vtsls through extras, ts_ls is disabled
       --   ts_ls = {
       --     enabled = true,

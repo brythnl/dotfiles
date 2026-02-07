@@ -1,0 +1,5 @@
+local.docker-compose.yml
+local.dump.sql
+local.init.sql
+GEMINI.md
+CLAUDE.md

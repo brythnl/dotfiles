@@ -49,4 +49,55 @@ return {
       }
     }
   },
+
+  -- AI stuff
+  -- {
+  --   "olimorris/codecompanion.nvim",
+  --   lazy = false,
+  --   version = "^18.0.0",
+  --   opts = {
+  --     interactions = {
+  --       chat = {
+  --         adapter = "gemini_cli"
+  --       },
+  --     },
+  --   },
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "ravitemer/mcphub.nvim",
+  --   },
+  --   keys = {
+  --     { "<leader>cc", "<cmd>CodeCompanionChat<cr>" },
+  --   },
+  -- },
+  --
+  -- {
+  --   "saghen/blink.cmp",
+  --   opts = {
+  --     sources = {
+  --       per_filetype = {
+  --         codecompanion = { "codecompanion" },
+  --       }
+  --     },
+  --   },
+  -- },
+  --
+  -- {
+  -- "MeanderingProgrammer/render-markdown.nvim",
+  --   ft = { "markdown", "codecompanion" }
+  -- },
+  --
+  -- {
+  --   "HakonHarnes/img-clip.nvim",
+  --   opts = {
+  --     filetypes = {
+  --       codecompanion = {
+  --         prompt_for_file_name = false,
+  --         template = "[Image]($FILE_PATH)",
+  --         use_absolute_path = true,
+  --       },
+  --     },
+  --   },
+  -- },
 }
