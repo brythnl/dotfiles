@@ -13,8 +13,6 @@ alias gem='gemini'
 
 alias pgdb='psql -h localhost -U postgres'
 
-alias n='cd ~/notes && vim'
-
 # pnpm
 alias p='pnpm'
 alias dev='pnpm dev'
