@@ -1,0 +1,11 @@
+run:
+  timeout: 5m
+
+linters-settings:
+  stylecheck:
+    disable:
+      - ST1000 # at least one file in a package should have a package comment
+
+linters:
+  enable:
+    - stylecheck

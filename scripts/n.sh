@@ -1,11 +1,11 @@
 #!/bin/bash
 
-current_window=false
+new_window=false
 
 while [[ "$#" -gt 0 ]]; do
     case "$1" in
-        -c|--current-window)
-            current_window=true
+        -c|--new-window)
+            new_window=true
             ;;
         *)
             echo "Unknown option: $1"
@@ -15,8 +15,8 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
-if [ "$current_window" = true ]; then
-    cd ~/notes && nvim
+if [ "$new_window" = true ]; then
+    tmux new-window -n "notes" -c "$HOME/notes" 'nvim'
 else
-  tmux new-window -n "notes" -c "$HOME/notes" 'nvim'
+    tmux rename-window "notes" && cd ~/notes && nvim
 fi

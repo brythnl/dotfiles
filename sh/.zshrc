@@ -79,3 +79,9 @@ compinit
 if [ -f ~/.zshrc.local ]; then 
   . ~/.zshrc.local
 fi
+
+# run tmux on startup
+if [[ -z "$TMUX" ]]; then
+    tmux attach-session -t main || tmux new-session -s main
+fi
+

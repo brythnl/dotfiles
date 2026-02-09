@@ -24,7 +24,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       indent = {
-        enable = true
+        enable = true,
       },
       highlight = {
         enable = true,
@@ -58,8 +58,22 @@ return {
         ["markdownlint-cli2"] = {
           prepend_args = { "--config", os.getenv("HOME") .. "/.config/nvim/configs/.markdownlint-cli2.yaml", "--" },
         },
+        ["golangci-lint"] = {
+          prepend_args = { "--config", os.getenv("HOME") .. "/.config/nvim/configs/.golangci.yaml" },
+        },
       },
     },
-  }
+  },
+
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters = {
+        ["markdownlint-cli2"] = {
+          prepend_args = { "--config", os.getenv("HOME") .. "/.config/nvim/configs/.markdownlint-cli2.yaml" },
+        },
+      },
+    },
+  },
 }
 
