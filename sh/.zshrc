@@ -2,7 +2,7 @@
 alias ll='ls -al'
 alias cl='clear'
 alias sdnow="sudo shutdown -h now"
-alias dotzsh="vim ~/.zshrc"
+alias dotf="cd ~/dev/dotfiles/ && vim"
 
 alias t='tmux'
 alias kills='tmux kill-session'
@@ -85,3 +85,6 @@ if [[ -z "$TMUX" ]]; then
     tmux attach-session -t main || tmux new-session -s main
 fi
 
+
+# opencode
+export PATH=/Users/bryan/.opencode/bin:$PATH

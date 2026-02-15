@@ -34,6 +34,16 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.api.nvim_set_current_line(line)
       end, { desc = "Toggle Checkbox", buffer = true })
 
+      -- Add new checkbox
+      set("n", "<leader>mc", function()
+        local line = vim.api.nvim_get_current_line()
+        local indent = line:match("^%s*")
+        local marker = line:match("^%s*([%*%-%+]%s*)") or "- "
+        local new_line = indent .. marker .. "[ ] "
+        vim.api.nvim_put({ new_line }, "l", true, false)
+        vim.cmd("startinsert!")
+      end, { desc = "Add new Checkbox", buffer = true })
+
       -- Insert Link
       set("v", "<leader>ml", 'c[<C-r>"]()<Esc>hf(', { desc = "Insert Link", buffer = true })
 
