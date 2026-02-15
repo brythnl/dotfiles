@@ -18,5 +18,5 @@ done
 if [ "$new_window" = true ]; then
     tmux new-window -n "notes" -c "$HOME/notes" 'nvim'
 else
-    tmux rename-window "notes" && cd ~/notes && nvim
+    tmux rename-window "notes" && cd ~/notes && exec nvim
 fi
