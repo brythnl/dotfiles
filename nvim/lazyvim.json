@@ -1,7 +1,5 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.ai.claudecode",
-    "lazyvim.plugins.extras.ai.codeium",
     "lazyvim.plugins.extras.coding.blink",
     "lazyvim.plugins.extras.coding.luasnip",
     "lazyvim.plugins.extras.coding.mini-surround",
@@ -11,9 +9,7 @@
     "lazyvim.plugins.extras.lang.prisma",
     "lazyvim.plugins.extras.lang.python",
     "lazyvim.plugins.extras.lang.tailwind",
-    "lazyvim.plugins.extras.lang.typescript",
-    "lazyvim.plugins.extras.lang.vue",
-    "lazyvim.plugins.extras.util.octo"
+    "lazyvim.plugins.extras.lang.typescript"
   ],
   "install_version": 8,
   "news": {

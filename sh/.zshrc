@@ -10,6 +10,7 @@ alias vim='nvim'
 alias lg='lazygit'
 
 alias gem='gemini'
+alias oc='opencode'
 
 alias pgdb='psql -h localhost -U postgres'
 
@@ -85,6 +86,14 @@ if [[ -z "$TMUX" ]]; then
     tmux attach-session -t main || tmux new-session -s main
 fi
 
+export VISUAL="nvim"
 
 # opencode
 export PATH=/Users/bryan/.opencode/bin:$PATH
+
+# bun completions
+[ -s "/Users/bryan/.bun/_bun" ] && source "/Users/bryan/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

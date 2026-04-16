@@ -33,13 +33,6 @@ return {
     end,
   },
 
-  {
-    "obsidian-nvim/obsidian.nvim",
-    opts = {
-      ui = { enable = false },
-    },
-  },
-
   -- Add Word Count to Lualine (Safe merge)
   {
     "nvim-lualine/lualine.nvim",

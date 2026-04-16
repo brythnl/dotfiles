@@ -3,3 +3,5 @@
 -- Add any additional options here
 
 vim.g.autoformat = false
+vim.g.lazyvim_ts_lsp = "tsgo"
+vim.opt.clipboard = "unnamedplus"

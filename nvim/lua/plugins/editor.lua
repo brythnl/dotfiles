@@ -1,7 +1,12 @@
 return {
   {
-    'folke/snacks.nvim',
+    "folke/snacks.nvim",
     opts = {
+      dashboard = {
+        preset = {
+          header = [[]],
+        },
+      },
       picker = {
         hidden = true,
         files = {
@@ -13,17 +18,22 @@ return {
             hidden = true,
             ignored = true,
           },
-        }
+        },
       },
-    }
+    },
   },
 
   {
     "HakonHarnes/img-clip.nvim",
     event = "VeryLazy",
     opts = {
-      -- add options here
-      -- or leave it empty to use the default settings
+      filetypes = {
+        codecompanion = {
+          prompt_for_file_name = false,
+          template = "[Image]($FILE_PATH)",
+          use_absolute_path = true,
+        },
+      },
     },
     keys = {
       { "<leader>P", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
@@ -71,12 +81,12 @@ return {
 
   {
     "obsidian-nvim/obsidian.nvim",
-    version = "*", -- use latest release, remove to use latest commit
     ft = "markdown",
     ---@module 'obsidian'
     ---@type obsidian.config
     opts = {
-      legacy_commands = false, -- this will be removed in the next major release
+      legacy_commands = false,
+      ui = { enable = false },
       workspaces = {
         {
           name = "notes",
@@ -84,5 +94,5 @@ return {
         },
       },
     },
-  }
+  },
 }

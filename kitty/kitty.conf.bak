@@ -1,14 +1,9 @@
-font_family Hack Nerd Font Regular
-bold_font Hack Nerd Font Bold
-italic_font Hack Nerd Font Italic
-bold_italic_font Hack Nerd Font Bold Italic
-
 font_size 14
 adjust_line_height 120%
 
 cursor_blink_interval 0
 enable_audio_bell 0
-window_padding_width 8
+window_padding_width 4
 # wayland_titlebar_color #23212d
 # hide_window_decorations yes
 
@@ -16,6 +11,13 @@ window_padding_width 8
 # dynamic_background_opacity yes
 
 # BEGIN_KITTY_THEME
-# Terafox
+# 3024 Night
 include current-theme.conf
 # END_KITTY_THEME
+
+# BEGIN_KITTY_FONTS
+font_family      family="Monaspace Argon NF"
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+# END_KITTY_FONTS

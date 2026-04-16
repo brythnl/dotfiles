@@ -1,88 +1,69 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    opts = {
-      inlayHints = { enabled = false },
-      servers = {
-        vtsls = {
-          -- tsgo is not compatible with vue_ls yet
-          filetypes = { "vue" },
+    opts = function(_, opts)
+      opts.inlayHints = { enabled = false }
+
+      -- vtsls handles Vue files only (tsgo doesn't support Vue)
+      opts.servers.vtsls = vim.tbl_deep_extend("force", opts.servers.vtsls or {}, {
+        enabled = true,
+        filetypes = { "vue" },
+        settings = {
+          vtsls = {
+            tsserver = {
+              globalPlugins = {
+                {
+                  name = "@vue/typescript-plugin",
+                  location = LazyVim.get_pkg_path("vue-language-server", "/node_modules/@vue/language-server"),
+                  languages = { "vue" },
+                  configNamespace = "typescript",
+                  enableForWorkspaceTypeScriptVersions = true,
+                },
+              },
+            },
+          },
         },
-        tsgo = {},
-      -- Using vtsls through extras, ts_ls is disabled
-      --   ts_ls = {
-      --     enabled = true,
-      --     filetypes = { "typescript", "javascript", "vue" },
-      --     init_options = {
-      --       plugins = {
-      --         {
-      --           name = "@vue/typescript-plugin",
-      --           location = "/home/bryan/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server",
-      --           languages = { "vue" },
-      --         },
-      --       },
-      --     },
-      --     settings = {
-      --       typescript = {
-      --         -- inlayHints = {
-      --         --   includeInlayParameterNameHints = "all",
-      --         --   includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-      --         --   includeInlayFunctionParameterTypeHints = true,
-      --         --   includeInlayVariableTypeHints = true,
-      --         --   includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-      --         --   includeInlayPropertyDeclarationTypeHints = true,
-      --         --   includeInlayFunctionLikeReturnTypeHints = true,
-      --         --   includeInlayEnumMemberValueHints = true,
-      --         -- },
-      --       },
-      --     },
-      --   },
-      --
-      --   vue_ls = {
-      --     init_options = {
-      --       vue = { hybridMode = true },
-      --     },
-      --     settings = {
-      --       typescript = {
-      --         inlayHints = {
-      --           -- enumMemberValues = { enabled = true },
-      --           -- functionLikeReturnTypes = { enabled = true },
-      --           -- propertyDeclarationTypes = { enabled = true },
-      --           -- parameterTypes = {
-      --           --   enabled = true,
-      --           --   suppressWhenArgumentMatchesName = true,
-      --           -- },
-      --           -- variableTypes = { enabled = true },
-      --         },
-      --       },
-      --     },
-      --   },
-      -- },
-      },
-    },
+      })
+
+      opts.servers.vue_ls = opts.servers.vue_ls or {}
+
+      opts.servers.gopls = vim.tbl_deep_extend("force", opts.servers.gopls or {}, {
+        settings = {
+          gopls = {
+            analyses = { unusedparams = true },
+            staticcheck = true,
+          },
+        },
+      })
+    end,
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = { ensure_installed = { "vue", "css" } },
   },
 
   {
     "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
-        'ruff',
-        'goimports',
-        'gofumpt',
-        'golangci-lint',
-        'gopls',
-        'lua-language-server',
-        'markdown-toc',
-        'markdownlint-cli2',
-        'marksman',
-        'prisma-language-server',
-        'pyright',
-        'shfmt',
-        'stylua',
-        'tailwindcss-language-server',
-        'tree-sitter-cli',
-        'vtsls',
-        'vue-language-server',
+        "ruff",
+        "goimports",
+        "gofumpt",
+        "golangci-lint",
+        "gopls",
+        "lua-language-server",
+        "markdown-toc",
+        "markdownlint-cli2",
+        "marksman",
+        "prisma-language-server",
+        "pyright",
+        "shfmt",
+        "stylua",
+        "tailwindcss-language-server",
+        "tree-sitter-cli",
+        "vtsls",
+        "vue-language-server",
       },
     },
   },
