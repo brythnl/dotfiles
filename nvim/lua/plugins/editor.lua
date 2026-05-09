@@ -78,21 +78,4 @@ return {
       -- hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
     },
   },
-
-  {
-    "obsidian-nvim/obsidian.nvim",
-    ft = "markdown",
-    ---@module 'obsidian'
-    ---@type obsidian.config
-    opts = {
-      legacy_commands = false,
-      ui = { enable = false },
-      workspaces = {
-        {
-          name = "notes",
-          path = "~/notes",
-        },
-      },
-    },
-  },
 }
