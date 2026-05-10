@@ -1,4 +1,6 @@
 return {
+  { "mrcjkb/rustaceanvim", lazy = false },
+
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
@@ -47,6 +49,7 @@ return {
     "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
+        "rust-analyzer",
         "ruff",
         "goimports",
         "gofumpt",

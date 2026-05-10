@@ -16,7 +16,7 @@ while [[ "$#" -gt 0 ]]; do
 done
 
 if [ "$new_window" = true ]; then
-    tmux new-window -n "notes" -c "$HOME/notes" 'nvim'
+    tmux new-window -n "exto" -c "$HOME/exto" 'nvim'
 else
-    tmux rename-window "notes" && cd ~/notes && exec nvim
+    tmux rename-window "exto" && cd ~/exto && exec nvim
 fi
