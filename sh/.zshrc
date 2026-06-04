@@ -9,9 +9,6 @@ alias kills='tmux kill-session'
 alias vim='nvim'
 alias lg='lazygit'
 
-alias gem='gemini'
-alias oc='opencode'
-
 alias pgdb='psql -h localhost -U postgres'
 
 # pnpm
@@ -25,9 +22,6 @@ alias stu='pnpm prisma studio'
 alias dbp='pnpm prisma db push'
 alias mcp='cp prisma/schema.prisma prisma/schema_old.prisma'
 alias mdiff='pnpm prisma migrate diff --from-schema-datamodel prisma/schema_old.prisma --to-schema-datamodel prisma/schema.prisma --script'
-
-# go
-alias gg='go get'
 
 # python
 alias av='source .venv/bin/activate'
@@ -84,9 +78,6 @@ fi
 
 # codex
 export VISUAL="nvim"
-
-# opencode
-export PATH=/Users/bryan/.opencode/bin:$PATH
 
 # bun completions
 [ -s "/Users/bryan/.bun/_bun" ] && source "/Users/bryan/.bun/_bun"

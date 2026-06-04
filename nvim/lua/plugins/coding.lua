@@ -20,34 +20,17 @@ return {
     end,
   },
 
+  { "nvim-treesitter/nvim-treesitter-textobjects", enabled = false },
+
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      indent = {
-        enable = true,
-      },
+      indent = { enable = true },
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = true,
       },
-      textobjects = {
-        lsp_interop = { enable = true },
-        select = {
-          enable = true,
-          lookahead = true,
-          keymaps = {
-            ['if'] = '@function.inner',
-            ['af'] = '@function.outer',
-            ['ip'] = '@parameter.inner',
-            ['ap'] = '@parameter.outer',
-            ['iv'] = '@assignment.inner',
-            ['av'] = '@assignment.outer',
-            ['ic'] = '@class.inner',
-            ['ac'] = '@class.outer',
-          },
-        }
-      }
-    }
+    },
   },
 
   {
@@ -77,11 +60,37 @@ return {
   },
 
   {
+    "mikavilpas/blink-ripgrep.nvim",
+    dependencies = { "saghen/blink.cmp" },
+  },
+  {
+    "Kaiser-Yang/blink-cmp-git",
+    dependencies = { "saghen/blink.cmp" },
+  },
+  {
+    "Kaiser-Yang/blink-cmp-dictionary",
+    dependencies = { "saghen/blink.cmp" },
+  },
+  {
+    "Kaiser-Yang/blink-cmp-avante",
+    dependencies = { "saghen/blink.cmp" },
+  },
+
+  {
     "saghen/blink.cmp",
     opts = {
       sources = {
+        default = { "lsp", "path", "snippets", "buffer", "ripgrep" },
+        providers = {
+          ripgrep = { module = "blink-ripgrep", name = "Ripgrep" },
+          git = { module = "blink-cmp-git", name = "Git" },
+          dictionary = { module = "blink-cmp-dictionary", name = "Dict" },
+          avante = { module = "blink-cmp-avante", name = "Avante" },
+        },
         per_filetype = {
-          codecompanion = { "codecompanion" },
+          gitcommit = { "lsp", "path", "snippets", "buffer", "git" },
+          markdown = { "lsp", "path", "snippets", "buffer", "ripgrep", "dictionary" },
+          AvanteInput = { "avante", "lsp", "path", "snippets", "buffer" },
         },
       },
     },

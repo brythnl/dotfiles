@@ -24,7 +24,7 @@ return {
         caution = { icon = "󰳦 " },
       },
     },
-    ft = { "markdown", "norg", "rmd", "org", "codecompanion" },
+    ft = { "markdown", "norg", "rmd", "org", "Avante" },
     config = function(_, opts)
       require("render-markdown").setup(opts)
       for i = 1, 6 do
