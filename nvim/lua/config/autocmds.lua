@@ -11,6 +11,12 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
 end
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    vim.lsp.inlay_hint.enable(false, { bufnr = args.buf })
+  end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("wrap_spell"),
   pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
@@ -46,10 +52,6 @@ vim.api.nvim_create_autocmd("FileType", {
 
       -- Insert Link
       set("v", "<leader>ml", 'c[<C-r>"]()<Esc>hf(', { desc = "Insert Link", buffer = true })
-
-      -- TODO: install markdown-toc
-      -- Table of Contents
-      -- set("n", "<leader>mt", "<cmd>GenTocGFM<cr>", { desc = "Generate TOC", buffer = true })
     end
   end,
 })

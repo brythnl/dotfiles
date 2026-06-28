@@ -7,10 +7,6 @@ return {
         width = "block",
         right_pad = 1,
       },
-      heading = {
-        sign = false,
-        icons = { "󰉫 ", "󰉬 ", "󰉭 ", "󰉮 ", "󰉯 ", "󰉰 " },
-      },
       checkbox = {
         enabled = true,
         unchecked = { icon = "󰄱 " },
@@ -22,6 +18,10 @@ return {
         important = { icon = "󰅒 " },
         warning = { icon = "󰀪 " },
         caution = { icon = "󰳦 " },
+      },
+      heading = {
+        sign = false,
+        icons = { "󰉫 ", "󰉬 ", "󰉭 ", "󰉮 ", "󰉯 ", "󰉰 " },
       },
     },
     ft = { "markdown", "norg", "rmd", "org", "Avante" },

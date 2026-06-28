@@ -1,14 +1,20 @@
 font_size 14
 adjust_line_height 120%
 
+map cmd+` nth_os_window -1
+
 cursor_blink_interval 0
 enable_audio_bell 0
-window_padding_width 4
-# wayland_titlebar_color #23212d
-# hide_window_decorations yes
 
-# background_opacity 0.70
-# dynamic_background_opacity yes
+window_padding_width 10
+
+background_opacity 0.8
+background_blur 64
+dynamic_background_opacity yes
+
+hide_window_decorations titlebar-only
+tab_bar_background none
+macos_titlebar_color background
 
 # BEGIN_KITTY_THEME
 # 3024 Night
@@ -16,7 +22,7 @@ include current-theme.conf
 # END_KITTY_THEME
 
 # BEGIN_KITTY_FONTS
-font_family      family="Monaspace Argon NF"
+font_family      family="FiraCode Nerd Font Mono"
 bold_font        auto
 italic_font      auto
 bold_italic_font auto

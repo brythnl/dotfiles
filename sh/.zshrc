@@ -1,11 +1,10 @@
 ##### ALIASES #####
-alias ll='ls -al'
+alias ll='eza -al'
 alias cl='clear'
 alias sdnow="sudo shutdown -h now"
 alias dotf="cd ~/dev/dotfiles/ && vim"
 
 alias t='tmux'
-alias kills='tmux kill-session'
 alias vim='nvim'
 alias lg='lazygit'
 
@@ -73,7 +72,7 @@ compinit
 
 # run tmux on startup
 if [[ -z "$TMUX" ]]; then
-    tmux attach-session -t main || tmux new-session -s main
+    tmux attach-session || tmux new-session
 fi
 
 # codex
@@ -89,4 +88,3 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 if [ -f ~/.zshrc.local ]; then 
   . ~/.zshrc.local
 fi
-
