@@ -8,7 +8,13 @@ return {
         },
       },
       picker = {
-        hidden = true,
+        win = {
+          input = {
+            keys = {
+              ["<C-t>"] = { "toggle_hidden", mode = { "i", "n" } },
+            },
+          },
+        },
         files = {
           hidden = true,
           ignored = true,
@@ -17,6 +23,9 @@ return {
           explorer = {
             hidden = true,
             ignored = true,
+          },
+          grep = {
+            hidden = true,
           },
         },
       },

@@ -53,8 +53,16 @@
                         "product_id": 47,
                         "vendor_id": 9610
                     },
-                    "ignore": false,
-                    "mouse_flip_vertical_wheel": true
+                    "ignore": false
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 53348,
+                        "vendor_id": 13364
+                    },
+                    "ignore": false
                 }
             ],
             "name": "ansi",

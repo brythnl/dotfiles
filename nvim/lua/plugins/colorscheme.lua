@@ -19,6 +19,8 @@ return {
           SignColumn   = { bg = "NONE" },
           EndOfBuffer  = { bg = "NONE" },
           FoldColumn   = { bg = "NONE" },
+          Visual       = { bg = "#7b7fb5" },
+          VisualNOS    = { bg = "#7b7fb5" },
         },
       },
     },
