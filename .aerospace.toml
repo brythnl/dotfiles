@@ -19,11 +19,11 @@ outer.bottom = 4
 # --- App -> workspace assignment ---
 
 [[on-window-detected]]
-if.app-id = 'com.brave.Browser'
+if.app-id = 'net.kovidgoyal.kitty'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-if.app-id = 'net.kovidgoyal.kitty'
+if.app-id = 'com.brave.Browser'
 run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
@@ -79,10 +79,9 @@ alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 
-# Send the active workspace to the other monitor (no-op with only one connected)
 alt-shift-tab = 'move-workspace-to-monitor next'
+alt-shift-backtick = 'move-workspace-to-monitor prev'
 
 # Misc
-alt-enter = 'exec-and-forget open -a kitty'
 alt-shift-q = 'close'
 alt-shift-r = 'reload-config'

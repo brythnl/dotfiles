@@ -71,10 +71,6 @@ return {
     "Kaiser-Yang/blink-cmp-dictionary",
     dependencies = { "saghen/blink.cmp" },
   },
-  {
-    "Kaiser-Yang/blink-cmp-avante",
-    dependencies = { "saghen/blink.cmp" },
-  },
 
   {
     "saghen/blink.cmp",
@@ -82,15 +78,26 @@ return {
       sources = {
         default = { "lsp", "path", "snippets", "buffer", "ripgrep" },
         providers = {
-          ripgrep = { module = "blink-ripgrep", name = "Ripgrep" },
+          ripgrep = {
+            module = "blink-ripgrep",
+            name = "Ripgrep",
+            opts = {
+              prefix_min_len = 4,
+              backend = {
+                use = "gitgrep-or-ripgrep",
+                ripgrep = {
+                  project_root_fallback = false,
+                  max_filesize = "512K",
+                },
+              },
+            },
+          },
           git = { module = "blink-cmp-git", name = "Git" },
           dictionary = { module = "blink-cmp-dictionary", name = "Dict" },
-          avante = { module = "blink-cmp-avante", name = "Avante" },
         },
         per_filetype = {
           gitcommit = { "lsp", "path", "snippets", "buffer", "git" },
           markdown = { "lsp", "path", "snippets", "buffer", "ripgrep" },
-          AvanteInput = { "avante", "lsp", "path", "snippets", "buffer" },
         },
       },
     },

@@ -24,7 +24,7 @@ return {
         icons = { "󰉫 ", "󰉬 ", "󰉭 ", "󰉮 ", "󰉯 ", "󰉰 " },
       },
     },
-    ft = { "markdown", "norg", "rmd", "org", "Avante" },
+    ft = { "markdown", "norg", "rmd", "org" },
     config = function(_, opts)
       require("render-markdown").setup(opts)
       for i = 1, 6 do

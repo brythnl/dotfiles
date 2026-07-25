@@ -33,24 +33,6 @@ return {
   },
 
   {
-    "yetone/avante.nvim",
-    opts = {
-      behaviour = {
-        auto_set_keymaps = true,
-      },
-      provider = "deepseek",
-      providers = {
-        deepseek = {
-          __inherited_from = "openai",
-          endpoint = "https://api.deepseek.com/v1",
-          model = "deepseek-v4-pro",
-          api_key_name = "DEEPSEEK_API_KEY",
-        },
-      },
-    },
-  },
-
-  {
     "HakonHarnes/img-clip.nvim",
     event = "VeryLazy",
     opts = {},
