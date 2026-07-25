@@ -89,7 +89,7 @@ return {
         },
         per_filetype = {
           gitcommit = { "lsp", "path", "snippets", "buffer", "git" },
-          markdown = { "lsp", "path", "snippets", "buffer", "ripgrep", "dictionary" },
+          markdown = { "lsp", "path", "snippets", "buffer", "ripgrep" },
           AvanteInput = { "avante", "lsp", "path", "snippets", "buffer" },
         },
       },
