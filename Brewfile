@@ -32,12 +32,16 @@ brew "neovim"
 brew "node"
 # Manage multiple Node.js versions
 brew "nvm"
+# CLI for Postgres with auto-completion and syntax highlighting
+brew "pgcli"
 # Paste PNG into files
 brew "pngpaste"
 # Fast, disk space efficient package manager
 brew "pnpm"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Open source continuous file synchronization application
+brew "syncthing", restart_service: :changed
 # Terminal multiplexer
 brew "tmux"
 # Display directories as trees (with optional color/HTML output)
@@ -46,11 +50,15 @@ brew "tree"
 brew "tree-sitter-cli"
 # UNIX shell (command interpreter)
 brew "zsh"
+# AeroSpace is an i3-like tiling window manager for macOS
+cask "nikitabobko/tap/aerospace", trusted: true
 # Securely stores and accesses AWS credentials in a development environment
 cask "aws-vault-binary"
 cask "font-sauce-code-pro-nerd-font"
 # Cross-platform Git credential storage for multiple hosting providers
 cask "git-credential-manager"
+# GPU-based terminal emulator
+cask "kitty"
 # Free cross-platform office suite, fresh version
 cask "libreoffice"
 # Whisper dictation/transcription app

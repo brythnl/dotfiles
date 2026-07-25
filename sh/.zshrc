@@ -8,13 +8,13 @@ alias t='tmux'
 alias vim='nvim'
 alias lg='lazygit'
 
-alias pgdb='psql -h localhost -U postgres'
+alias pgc='pgcli -h localhost -U postgres'
 
 # pnpm
 alias p='pnpm'
 alias dev='pnpm dev'
 alias typc='pnpm typecheck'
-alias lfx='pnpm lint --fix && p localesort'
+alias lfx='pnpm lint --fix'
 
 # prisma
 alias stu='pnpm prisma studio'
@@ -88,3 +88,12 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 if [ -f ~/.zshrc.local ]; then 
   . ~/.zshrc.local
 fi
+
+# fzf
+export FZF_DEFAULT_COMMAND='fd --type f --hidden'
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
